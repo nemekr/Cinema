@@ -36,3 +36,4 @@ jegyet venni. A rendeléseket egy ügyintéző/admin igazolja.
 
 ## Use-Case diagram
 
+![UseCaseDiagram](images/UseCaseDiagram.png?raw=true "UseCaseDiagram")
