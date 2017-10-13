@@ -32,5 +32,7 @@ jegyet venni. A rendeléseket egy ügyintéző/admin igazolja.
 
 ## Adatbázis terv
 
+![Adatbázis terv](images/terv.png?raw=true "Adatbázis terv")
+
 ## Use-Case diagram
 
