@@ -30,6 +30,9 @@ jegyet venni. A rendeléseket egy ügyintéző/admin igazolja.
 |ADM2| Az admin felhasználó képes a termeken alapvető adatbázis műveletek végrehajtani (felvétel/törlés/módosítás) |
 |ADM3| Az admin felhasználó visszaigazolja a leadott rendeléseket |
 
+## Nem funkcionális követelmények
+A felhasználó egy böngésző segítségével tudja használni a program funkcióit (pl. Firefox, Chrome...stb.). A szervergépen elérhető java futtató környezet 8-as verziójú. Sebesség és teljesítménybeli elvárások nincsenek, maximális erőforrásigény nincs meghatározva. Felhasználók adataira vonatkozó biztonsági megkötések nincsenek.
+
 ## Adatbázis terv
 
 ![Adatbázis terv](images/terv.png?raw=true "Adatbázis terv")
