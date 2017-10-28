@@ -31,23 +31,26 @@ public class OrderService {
 	
 	@Transactional
 	public Order placeOrder(Order newOrder) {
+		validateOrder(newOrder);
 		for(OrderItem item : newOrder.getItems()) {
-			 Presentation p = item.getPresentation();
-			 Integer quantity = item.getQuantity();
-			 
-			 if ( p.getRoom().getCapacity() < quantity ) {
-				 throw new IllegalArgumentException("Ticket quantity must be less then the room capacity!");
-			 }
-			 if ( p.getAvaliableTickets() < quantity) {
-				 throw new IllegalArgumentException("You cannot buy that many tickets!");
-			 }
-			 
-			 p.setAvaliableTickets(p.getAvaliableTickets() - quantity);
-			 presentationRepo.save(p);
+			 Presentation presentation = item.getPresentation();
+			 Integer orderedQty = item.getQuantity();
+			 presentation.setAvaliableTickets(presentation.getAvaliableTickets() - orderedQty);
+			 presentationRepo.save(presentation);
 		}
 		
-		orderRepo.save(newOrder);
-		return null;
+		return orderRepo.save(newOrder);
+	}
+	
+	private void validateOrder(Order newOrder) {
+		for(OrderItem item : newOrder.getItems()) {
+			 Presentation presentation = item.getPresentation();
+			 Integer orderedQty = item.getQuantity();
+
+			 if ( presentation.getAvaliableTickets() < orderedQty) {
+				 throw new IllegalArgumentException("You cannot buy that many tickets!");
+			 }
+		}
 	}
 	
 	@Transactional
