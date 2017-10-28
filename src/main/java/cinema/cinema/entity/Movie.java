@@ -27,7 +27,5 @@ public class Movie extends BaseEntity{
 	@Column( nullable = false)
 	private String description;
 	@Column( nullable = false)
-	private List<String> actors;
-	@Column( nullable = false)
 	private Integer prize;
 }

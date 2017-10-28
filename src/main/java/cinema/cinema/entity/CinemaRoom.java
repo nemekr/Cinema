@@ -2,6 +2,8 @@ package cinema.cinema.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import groovy.transform.EqualsAndHashCode;
@@ -21,5 +23,6 @@ public class CinemaRoom extends BaseEntity {
 	@Column( nullable = false)
 	private Integer number;
 	@Column( nullable = false)
+	@Enumerated(EnumType.STRING)
 	private RoomType type;
 }

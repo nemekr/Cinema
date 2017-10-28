@@ -11,5 +11,4 @@ import cinema.cinema.entity.Movie;
 public interface MovieRepository extends CrudRepository<Movie, Long> {
 	List<Movie> findByTitleIgnoreCaseContaining(String title);
 	List<Movie> findByYear(Integer year);
-	List<Movie> findByActorsIgnoreCaseContaining(String actor);
 }
