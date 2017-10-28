@@ -114,4 +114,16 @@ public class UserService {
 		iterator.forEach(target::add);
 		return target;
 	}
+	
+	public List<User> findUserByNameIgnoreCaseContaining(String name) {
+		return userRepo.findByNameIgnoreCaseContaining(name);
+	}
+	
+	public List<User> findByAddressIgnoreCaseContaining(String address) {
+		return userRepo.findByAddressIgnoreCaseContaining(address);
+	}
+	
+	public List<User> findByRole(Role role) {
+		return userRepo.findByRole(role);
+	}
 }
