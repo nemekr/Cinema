@@ -2,6 +2,7 @@ package cinema.cinema.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -11,16 +12,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "User")
+@Table(name = "Movie")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Movie extends BaseEntity{
+	@Column( nullable = false)
 	private String title;
+	@Column( nullable = false)
 	private Integer year;
+	@Column( nullable = false)
 	private Integer length;
+	@Column( nullable = false)
 	private String description;
+	@Column( nullable = false)
 	private List<String> actors;
+	@Column( nullable = false)
 	private Integer prize;
 }
