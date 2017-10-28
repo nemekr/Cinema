@@ -60,10 +60,28 @@ public class OrderService {
 		return orderRepo.save(order);
 	}
 	
+	@Transactional
+	public Order deleteOrder(Order order) {
+		validateOrderDeletion(order);
+		orderRepo.delete(order);
+		return order;
+	}
+	
+	private void validateOrderDeletion(Order order) {
+		checkOrderExistence(order);
+		orderClosed(order);
+	}
+	
 	private void checkOrderExistence(Order order) {
 		Optional<Order> foundOrder = Optional.of(orderRepo.findOne(order.getId()));
 		if(!foundOrder.isPresent()) {
 			throw new IllegalArgumentException("The order does not exist!");
+		}
+	}
+	
+	private void orderClosed(Order order) {
+		if(order.getStatus() != Status.CLOSED) {
+			throw new IllegalArgumentException("The order cannot be deleted because it is in an active state.");
 		}
 	}
 	
