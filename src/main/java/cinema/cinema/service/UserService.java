@@ -1,6 +1,7 @@
 package cinema.cinema.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -103,5 +104,13 @@ public class UserService {
 
 		userRepo.delete(deleteUser);
 		return deleteUser;
+	}
+	
+	public List<User> listUsers() {
+		Iterable<User> iterator =  userRepo.findAll();
+		List<User> target = new ArrayList<>();
+		
+		iterator.forEach(target::add);
+		return target;
 	}
 }
