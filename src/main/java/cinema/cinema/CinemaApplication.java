@@ -57,7 +57,7 @@ public class CinemaApplication implements CommandLineRunner {
 			movieRepo.save(testMovie);
 			CinemaRoom testRoom = new CinemaRoom(new Integer(120), new Integer(1), RoomType.NORMAL);
 			roomRepo.save(testRoom);
-			Presentation testPres = new Presentation(testMovie, testRoom, new Timestamp(System.currentTimeMillis()), new Integer(200));
+			Presentation testPres = new Presentation(testMovie, testRoom, new Timestamp(System.currentTimeMillis()));
 			presRepo.save(testPres);
 			OrderItem testOrderItem = new OrderItem(testPres, new Integer(1));
 			

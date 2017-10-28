@@ -31,5 +31,14 @@ public class Presentation extends BaseEntity {
 	private Timestamp time;
 	
 	@Column(nullable = false)
-	private Integer avaliableTickets;// = room.getCapacity();
+	private Integer avaliableTickets;
+
+	public Presentation(Movie movie, CinemaRoom room, Timestamp time) {
+		this.movie = movie;
+		this.room = room;
+		this.time = time;
+		this.avaliableTickets = room.getCapacity();
+	}
+	
+	
 }
