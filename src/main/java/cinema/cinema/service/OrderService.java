@@ -3,6 +3,7 @@ package cinema.cinema.service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,10 +54,17 @@ public class OrderService {
 	}
 	
 	@Transactional
-	public Order modifyOrderState(Order modifyOrder, Status newStatus) {
-		modifyOrder.setStatus(newStatus);
-		orderRepo.save(modifyOrder);
-		return modifyOrder;
+	public Order modifyOrderState(Order order, Status newStatus) {
+		checkOrderExistence(order);
+		order.setStatus(newStatus);
+		return orderRepo.save(order);
+	}
+	
+	private void checkOrderExistence(Order order) {
+		Optional<Order> foundOrder = Optional.of(orderRepo.findOne(order.getId()));
+		if(!foundOrder.isPresent()) {
+			throw new IllegalArgumentException("The order does not exist!");
+		}
 	}
 	
 	public List<Order> listOrders() {

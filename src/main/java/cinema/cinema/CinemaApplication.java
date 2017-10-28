@@ -67,6 +67,7 @@ public class CinemaApplication implements CommandLineRunner {
 			Order testOrder = new Order(testUser, new Timestamp(System.currentTimeMillis()) , Status.PENDING, list);
 			
 			orderService.placeOrder(testOrder);
+			orderService.modifyOrderState(testOrder, Status.APPROVED);
 			
 		} catch (IllegalArgumentException ex) {
 			System.out.println(ex.getMessage());
