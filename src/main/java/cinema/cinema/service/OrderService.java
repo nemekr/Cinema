@@ -20,7 +20,6 @@ import lombok.Data;
 
 @Transactional(readOnly = true)
 @Service
-@SessionScope
 @Data
 public class OrderService {
 	@Autowired

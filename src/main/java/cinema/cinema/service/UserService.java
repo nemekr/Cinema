@@ -17,7 +17,6 @@ import lombok.Data;
 
 @Transactional(readOnly = true)
 @Service
-@SessionScope
 @Data
 public class UserService {
 	@Autowired
@@ -58,6 +57,7 @@ public class UserService {
 		throw new IllegalArgumentException("Invalid user!");
 	}
 
+	@Transactional
 	public User register(User registerUser) {
 		Optional<User> repoUser = userRepo.findByEmail(registerUser.getEmail());
 		if (repoUser.isPresent()) {

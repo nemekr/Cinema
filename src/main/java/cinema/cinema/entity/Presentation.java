@@ -31,5 +31,5 @@ public class Presentation extends BaseEntity {
 	private Timestamp time;
 	
 	@Column(nullable = false)
-	private Integer avaliableTickets = room.getCapacity();
+	private Integer avaliableTickets;// = room.getCapacity();
 }
