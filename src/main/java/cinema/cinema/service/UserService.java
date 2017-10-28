@@ -15,6 +15,7 @@ import cinema.cinema.entity.User;
 import cinema.cinema.repository.UserRepository;
 import lombok.Data;
 
+@Transactional(readOnly = true)
 @Service
 @SessionScope
 @Data
