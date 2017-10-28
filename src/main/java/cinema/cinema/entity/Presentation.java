@@ -29,4 +29,7 @@ public class Presentation extends BaseEntity {
 	private CinemaRoom room;
 	@Column(nullable = false)
 	private Timestamp time;
+	
+	@Column(nullable = false)
+	private Integer avaliableTickets = room.getCapacity();
 }

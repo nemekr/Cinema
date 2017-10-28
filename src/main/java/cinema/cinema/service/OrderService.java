@@ -10,9 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.annotation.SessionScope;
 
 import cinema.cinema.entity.Order;
+import cinema.cinema.entity.OrderItem;
+import cinema.cinema.entity.Presentation;
 import cinema.cinema.entity.Status;
 import cinema.cinema.entity.User;
 import cinema.cinema.repository.OrderRepository;
+import cinema.cinema.repository.PresentationRepository;
 import lombok.Data;
 
 @Transactional(readOnly = true)
@@ -23,14 +26,31 @@ public class OrderService {
 	@Autowired
 	private OrderRepository orderRepo;
 	
+	@Autowired
+	private PresentationRepository presentationRepo;
+	
+	@Transactional
 	public Order placeOrder(Order newOrder) {
 		for(OrderItem item : newOrder.getItems()) {
-			
+			 Presentation p = item.getPresentation();
+			 Integer quantity = item.getQuantity();
+			 
+			 if ( p.getRoom().getCapacity() < quantity ) {
+				 throw new IllegalArgumentException("Ticket quantity must be less then the room capacity!");
+			 }
+			 if ( p.getAvaliableTickets() < quantity) {
+				 throw new IllegalArgumentException("You cannot buy that many tickets!");
+			 }
+			 
+			 p.setAvaliableTickets(p.getAvaliableTickets() - quantity);
+			 presentationRepo.save(p);
 		}
 		
+		orderRepo.save(newOrder);
 		return null;
 	}
 	
+	@Transactional
 	public Order modifyOrderState(Order modifyOrder, Status newStatus) {
 		modifyOrder.setStatus(newStatus);
 		orderRepo.save(modifyOrder);
