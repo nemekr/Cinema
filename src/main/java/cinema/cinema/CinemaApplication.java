@@ -21,6 +21,7 @@ import cinema.cinema.entity.User;
 import cinema.cinema.repository.CinemaRoomRepository;
 import cinema.cinema.repository.MovieRepository;
 import cinema.cinema.repository.PresentationRepository;
+import cinema.cinema.service.AdminService;
 import cinema.cinema.service.OrderService;
 import cinema.cinema.service.UserService;
 
@@ -32,6 +33,9 @@ public class CinemaApplication implements CommandLineRunner {
 
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private AdminService adminService;
 	
 	@Autowired
 	private PresentationRepository presRepo;
@@ -51,7 +55,6 @@ public class CinemaApplication implements CommandLineRunner {
 		try {
 			User testUser = new User("test@test.hu", "pass", "Jani", "Hid alatt", Role.USER);
 			User registeredUser = userService.register(testUser);
-			System.out.println(registeredUser);
 			
 			Movie testMovie = new Movie("Asd", new Integer(1928), new Integer(120), "desc", new Integer(1200));
 			movieRepo.save(testMovie);
@@ -67,7 +70,8 @@ public class CinemaApplication implements CommandLineRunner {
 			Order testOrder = new Order(testUser, new Timestamp(System.currentTimeMillis()) , Status.PENDING, list);
 			
 			orderService.placeOrder(testOrder);
-			orderService.modifyOrderState(testOrder, Status.APPROVED);
+			orderService.modifyOrderState(testOrder, Status.CLOSED);
+			adminService.deleteRoom(testRoom);
 			
 		} catch (IllegalArgumentException ex) {
 			System.out.println(ex.getMessage());
