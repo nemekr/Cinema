@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class CinemaRoom extends BaseEntity {
+public class CinemaRoom extends BaseEntity implements SearchableEntity {
 	@Column( nullable = false)
 	private Integer capacity;
 	@Column( nullable = false, unique=true)

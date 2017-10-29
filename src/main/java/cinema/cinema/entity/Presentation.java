@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Presentation extends BaseEntity {
+public class Presentation extends BaseEntity implements SearchableEntity {
 	@ManyToOne
 	@JoinColumn(name="movieId")
 	private Movie movie;
@@ -29,15 +29,14 @@ public class Presentation extends BaseEntity {
 	private CinemaRoom room;
 	@Column(nullable = false)
 	private Timestamp time;
-	
 	@Column(nullable = false)
-	private Integer avaliableTickets;
+	private Integer availableTickets;
 
 	public Presentation(Movie movie, CinemaRoom room, Timestamp time) {
 		this.movie = movie;
 		this.room = room;
 		this.time = time;
-		this.avaliableTickets = room.getCapacity();
+		this.availableTickets = room.getCapacity();
 	}
 	
 	

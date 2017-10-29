@@ -35,7 +35,7 @@ public class OrderService {
 		for(OrderItem item : newOrder.getItems()) {
 			 Presentation presentation = item.getPresentation();
 			 Integer orderedQty = item.getQuantity();
-			 presentation.setAvaliableTickets(presentation.getAvaliableTickets() - orderedQty);
+			 presentation.setAvailableTickets(presentation.getAvailableTickets() - orderedQty);
 			 presentationRepo.save(presentation);
 		}
 		
@@ -47,7 +47,7 @@ public class OrderService {
 			 Presentation presentation = item.getPresentation();
 			 Integer orderedQty = item.getQuantity();
 
-			 if ( presentation.getAvaliableTickets() < orderedQty) {
+			 if ( presentation.getAvailableTickets() < orderedQty) {
 				 throw new IllegalArgumentException("You cannot buy that many tickets!");
 			 }
 		}

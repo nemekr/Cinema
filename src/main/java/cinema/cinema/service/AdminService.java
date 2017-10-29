@@ -12,6 +12,7 @@ import cinema.cinema.entity.CinemaRoom;
 import cinema.cinema.entity.Movie;
 import cinema.cinema.entity.Order;
 import cinema.cinema.entity.Presentation;
+import cinema.cinema.entity.SearchableEntity;
 import cinema.cinema.entity.Status;
 import cinema.cinema.repository.CinemaRoomRepository;
 import cinema.cinema.repository.MovieRepository;
@@ -38,6 +39,7 @@ public class AdminService {
 	
 	@Autowired
 	private OrderItemRepository orderItemRepo;
+	
 	
 	@Transactional
 	public CinemaRoom createRoom(CinemaRoom room) {
@@ -73,125 +75,94 @@ public class AdminService {
 	}
 	
 	@Transactional
-	public CinemaRoom updateRoom(CinemaRoom updatedRoom) {
-		checkRoomExistence(updatedRoom);
-		return roomRepo.save(updatedRoom);
+	public SearchableEntity updateSearchableEntity(SearchableEntity updatedEntity) {
+		checkExistence(updatedEntity);
+		
+		if(updatedEntity instanceof CinemaRoom)
+			return roomRepo.save((CinemaRoom)updatedEntity);
+		
+		else if(updatedEntity instanceof Movie)
+			return movieRepo.save((Movie)updatedEntity);
+		
+		else if(updatedEntity instanceof Presentation)
+			return presentationRepo.save((Presentation)updatedEntity);
+		
+		return updatedEntity;
 	}
 	
 	@Transactional
-	public Movie updateMovie(Movie updatedMovie) {
-		checkMovieExistence(updatedMovie);
-		return movieRepo.save(updatedMovie);
+	public SearchableEntity deleteSearchableEntity(SearchableEntity entity) {
+		checkExistence(entity);
+		removeAssociatedOrders(entity);
+		if(entity instanceof CinemaRoom)
+			roomRepo.delete((CinemaRoom)entity);
+		
+		else if(entity instanceof Movie)
+			movieRepo.delete((Movie)entity);
+		
+		else if(entity instanceof Presentation)
+			presentationRepo.delete((Presentation)entity);
+		
+		return entity;
 	}
 	
-	@Transactional
-	public Presentation updatePresentation(Presentation updatedPresentation) {
-		checkPresentationExistence(updatedPresentation);
-		return presentationRepo.save(updatedPresentation);
-	}
-	
-	@Transactional
-	public CinemaRoom deleteRoom(CinemaRoom room) {
-		checkRoomExistence(room);
-		removeAssociatedOrders(room);
-		roomRepo.delete(room);
-		return room;
-	}
-	
-	private void checkRoomExistence(CinemaRoom room) {
-		Optional<CinemaRoom> foundRoom = Optional.of(roomRepo.findOne(room.getId()));
-		if(!foundRoom.isPresent()) {
-			throw new IllegalArgumentException("The room does not exist!");
+	private void checkExistence(SearchableEntity entity) {
+		Optional<SearchableEntity> foundEntity = Optional.empty();
+		
+		if(entity instanceof CinemaRoom)
+			foundEntity = Optional.of(roomRepo.findOne(entity.getId()));
+		
+		else if(entity instanceof Movie)
+			foundEntity = Optional.of(movieRepo.findOne(entity.getId()));
+		
+		else if(entity instanceof Presentation)
+			foundEntity = Optional.of(presentationRepo.findOne(entity.getId()));
+		
+		if(!foundEntity.isPresent()) {
+			throw new IllegalArgumentException("The entity does not exist!");
 		}
 	}
 	
-	private void removeAssociatedOrders(CinemaRoom room) {
-		List<Order> orderList = orderRepo.findByCinemaRoom(room);
+	private void removeAssociatedOrders(SearchableEntity entity) {
+		List<Order> orderList = new ArrayList<>();
 		List<Order> ordersToDelete = new ArrayList<Order>();
+		
+		if(entity instanceof CinemaRoom)
+			orderList = orderRepo.findByCinemaRoom((CinemaRoom)entity);
+		
+		else if(entity instanceof Movie)
+			orderList = orderRepo.findByMovie((Movie)entity);
+		
+		else if(entity instanceof Presentation)
+			orderList = orderRepo.findByPresentation((Presentation)entity);
+		
 		orderList.forEach(order-> {
 			if(order.getStatus() != Status.CLOSED) {
-				throw new IllegalArgumentException("The room cannot be deleted because it is in an active order.");
+				throw new IllegalArgumentException("The entity cannot be deleted because it is in an active order.");
 			}
 			else {
 				ordersToDelete.add(order);
 			}
 		});
-		ordersToDelete.forEach(order-> {
-			order.getItems().forEach(item-> {
-				presentationRepo.delete(item.getPresentation().getId());
-				orderItemRepo.delete(item.getId());
+		
+		if(!(entity instanceof Presentation)) {
+			ordersToDelete.forEach(order-> {
+				order.getItems().forEach(item-> {
+					presentationRepo.delete(item.getPresentation().getId());
+					orderItemRepo.delete(item.getId());
+				});
+				orderRepo.delete(order.getId());
 			});
-			orderRepo.delete(order.getId());
-		});
-	}
-	
-	@Transactional
-	public Movie deleteMovie(Movie movie) {
-		checkMovieExistence(movie);
-		removeAssociatedOrders(movie);
-		movieRepo.delete(movie);
-		return movie;
-	}
-	
-	private void checkMovieExistence(Movie movie) {
-		Optional<Movie> foundMovie = Optional.of(movieRepo.findOne(movie.getId()));
-		if(!foundMovie.isPresent()) {
-			throw new IllegalArgumentException("The movie does not exist!");
 		}
-	}
-	
-	private void removeAssociatedOrders(Movie movie) {
-		List<Order> orderList = orderRepo.findByMovie(movie);
-		List<Order> ordersToDelete = new ArrayList<Order>();
-		orderList.forEach(order-> {
-			if(order.getStatus() != Status.CLOSED) {
-				throw new IllegalArgumentException("The movie cannot be deleted because it is in an active order.");
-			}
-			else {
-				ordersToDelete.add(order);
-			}
-		});
-		ordersToDelete.forEach(order-> {
-			order.getItems().forEach(item-> {
-				presentationRepo.delete(item.getPresentation().getId());
-				orderItemRepo.delete(item.getId());
+		
+		else {
+			ordersToDelete.forEach(order-> {
+				order.getItems().forEach(item-> {
+					orderItemRepo.delete(item.getId());
+				});
+				orderRepo.delete(order.getId());
 			});
-			orderRepo.delete(order.getId());
-		});
-	}
-	
-	@Transactional
-	public Presentation deletePresentation(Presentation presentation) {
-		checkPresentationExistence(presentation);
-		removeAssociatedOrders(presentation);
-		presentationRepo.delete(presentation);
-		return presentation;
-	}
-	
-	private void checkPresentationExistence(Presentation presentation) {
-		Optional<Presentation> foundPresentation = Optional.of(presentationRepo.findOne(presentation.getId()));
-		if(!foundPresentation.isPresent()) {
-			throw new IllegalArgumentException("The presentation does not exist!");
 		}
-	}
-	
-	private void removeAssociatedOrders(Presentation presentation) {
-		List<Order> orderList = orderRepo.findByPresentation(presentation);
-		List<Order> ordersToDelete = new ArrayList<Order>();
-		orderList.forEach(order-> {
-			if(order.getStatus() != Status.CLOSED) {
-				throw new IllegalArgumentException("The presentation cannot be deleted because it is in an active order.");
-			}
-			else {
-				ordersToDelete.add(order);
-			}
-		});
-		ordersToDelete.forEach(order-> {
-			order.getItems().forEach(item-> {
-				orderItemRepo.delete(item.getId());
-			});
-			orderRepo.delete(order.getId());
-		});
 	}
 	
 	public List<CinemaRoom> listRooms() {
@@ -209,7 +180,6 @@ public class AdminService {
 		iterator.forEach(target::add);
 		return target;
 	}
-	
 	
 	public List<Presentation> listPresentations() {
 		Iterable<Presentation> iterator =  presentationRepo.findAll();
