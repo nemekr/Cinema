@@ -39,28 +39,54 @@ public class AdminService {
 	@Autowired
 	private OrderItemRepository orderItemRepo;
 	
+	@Transactional
 	public CinemaRoom createRoom(CinemaRoom room) {
+		checkRoomNumber(room);
 		return roomRepo.save(room);
 	}
 	
+	private void checkRoomNumber(CinemaRoom room) {
+		Optional<CinemaRoom> foundRoom = roomRepo.findByNumber(room.getNumber());
+		if(!foundRoom.isPresent()) {
+			throw new IllegalArgumentException("A room with this number already exists!");
+		}
+	}
+	
+	@Transactional
 	public Movie createMovie(Movie movie) {
 		return movieRepo.save(movie);
 	}
 	
+	@Transactional
 	public Presentation createPresentation(Presentation presentation) {
+		checkPresentationValidity(presentation);
 		return presentationRepo.save(presentation);
 	}
 	
+	// TODO: idointervallum vizsgalata (a room gyakorlatilag [time, time + movie.length] intervallumban foglalt)
+	private void checkPresentationValidity(Presentation presentation) {
+		Optional<Presentation> foundPresentation = 
+				presentationRepo.findByRoomAndTime(presentation.getRoom(),presentation.getTime());
+		if(!foundPresentation.isPresent()) {
+			throw new IllegalArgumentException("Cannot create presentation: the room is already reserved at that time.");
+		}
+	}
 	
+	@Transactional
 	public CinemaRoom updateRoom(CinemaRoom updatedRoom) {
+		checkRoomExistence(updatedRoom);
 		return roomRepo.save(updatedRoom);
 	}
 	
+	@Transactional
 	public Movie updateMovie(Movie updatedMovie) {
+		checkMovieExistence(updatedMovie);
 		return movieRepo.save(updatedMovie);
 	}
 	
+	@Transactional
 	public Presentation updatePresentation(Presentation updatedPresentation) {
+		checkPresentationExistence(updatedPresentation);
 		return presentationRepo.save(updatedPresentation);
 	}
 	

@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class CinemaRoom extends BaseEntity {
 	@Column( nullable = false)
 	private Integer capacity;
-	@Column( nullable = false)
+	@Column( nullable = false, unique=true)
 	private Integer number;
 	@Column( nullable = false)
 	@Enumerated(EnumType.STRING)
