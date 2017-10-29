@@ -99,7 +99,10 @@ public class AdminService {
 		});
 	}
 	
+	@Transactional
 	public Movie deleteMovie(Movie movie) {
+		checkMovieExistence(movie);
+		removeAssociatedOrders(movie);
 		movieRepo.delete(movie);
 		return movie;
 	}
@@ -111,7 +114,30 @@ public class AdminService {
 		}
 	}
 	
+	private void removeAssociatedOrders(Movie movie) {
+		List<Order> orderList = orderRepo.findByMovie(movie);
+		List<Order> ordersToDelete = new ArrayList<Order>();
+		orderList.forEach(order-> {
+			if(order.getStatus() != Status.CLOSED) {
+				throw new IllegalArgumentException("The movie cannot be deleted because it is in an active order.");
+			}
+			else {
+				ordersToDelete.add(order);
+			}
+		});
+		ordersToDelete.forEach(order-> {
+			order.getItems().forEach(item-> {
+				presentationRepo.delete(item.getPresentation().getId());
+				orderItemRepo.delete(item.getId());
+			});
+			orderRepo.delete(order.getId());
+		});
+	}
+	
+	@Transactional
 	public Presentation deletePresentation(Presentation presentation) {
+		checkPresentationExistence(presentation);
+		removeAssociatedOrders(presentation);
 		presentationRepo.delete(presentation);
 		return presentation;
 	}
@@ -121,6 +147,25 @@ public class AdminService {
 		if(!foundPresentation.isPresent()) {
 			throw new IllegalArgumentException("The presentation does not exist!");
 		}
+	}
+	
+	private void removeAssociatedOrders(Presentation presentation) {
+		List<Order> orderList = orderRepo.findByPresentation(presentation);
+		List<Order> ordersToDelete = new ArrayList<Order>();
+		orderList.forEach(order-> {
+			if(order.getStatus() != Status.CLOSED) {
+				throw new IllegalArgumentException("The presentation cannot be deleted because it is in an active order.");
+			}
+			else {
+				ordersToDelete.add(order);
+			}
+		});
+		ordersToDelete.forEach(order-> {
+			order.getItems().forEach(item-> {
+				orderItemRepo.delete(item.getId());
+			});
+			orderRepo.delete(order.getId());
+		});
 	}
 	
 	public List<CinemaRoom> listRooms() {
