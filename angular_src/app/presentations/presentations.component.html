@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col">
+    <h1 class="display-2">Presentations</h1>  
+
+    <!--<status-filter [status]="selectedStatus" (onChange)="onFilterChange($event)"></status-filter> -->
+
+    <table class="table">  
+      <thead>  
+        <tr>  
+          <th scope="col">#</th>  
+          <th scope="col">Movie</th>  
+          <th scope="col">Room</th>  
+          <th scope="col">Time</th>
+          <th scope="col">Available tickets</th>
+        </tr>  
+      </thead>  
+      <tbody>  
+        <tr *ngFor="let presentation of presentations" (click)="onSelectPresentation(presentation)" [class.table-info]="presentation === selectedPresentation" >  
+          <th scope="row">{{ presentation.id }}</th>  
+          <td>{{ presentation.movie.title }}</td>  
+          <td>{{ presentation.room.number }}</td>  
+          <td>{{ presentation.time }}</td> 
+          <td>{{ presentation.availableTickets }}</td>   
+        </tr>  
+      </tbody>  
+    </table>  
+    Selected presentation: {{ selectedPresentation | json }}
+  </div>
+  <div class="col" *ngIf="selectedPresentation">
+    <presentation-details [presentation]="selectedPresentation"></presentation-details>
+  </div>
+</div>

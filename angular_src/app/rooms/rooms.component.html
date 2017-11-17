@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col">
+      <h1 class="display-2">Rooms</h1>  
+  
+      <!--<status-filter [status]="selectedStatus" (onChange)="onFilterChange($event)"></status-filter> -->
+  
+      <table class="table">  
+        <thead>  
+          <tr>  
+            <th scope="col">#</th>  
+            <th scope="col">Capacity</th>  
+            <th scope="col">Number</th>  
+            <th scope="col">Type</th>
+          </tr>  
+        </thead>  
+        <tbody>  
+          <tr *ngFor="let room of rooms" (click)="onSelectRoom(room)" [class.table-info]="room === selectedRoom" >  
+            <th scope="row">{{ room.id }}</th>  
+            <td>{{ room.capacity }}</td>  
+            <td>{{ room.number }}</td>  
+            <td>{{ room.type }}</td>   
+          </tr>  
+        </tbody>  
+      </table>  
+      Selected room: {{ selectedRoom | json }}
+    </div>
+  </div>
