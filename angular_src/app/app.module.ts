@@ -9,7 +9,9 @@ import {
   // News
   MatFormFieldModule,
   MatInputModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatChipsModule,
+  MatCardModule
 } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -57,6 +59,8 @@ import { RoomsComponent } from './rooms/rooms.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonToggleModule, 
+    MatChipsModule,
+    MatCardModule,
     //
 
     FlexLayoutModule,

@@ -12,6 +12,7 @@
           <th scope="col">Room</th>  
           <th scope="col">Time</th>
           <th scope="col">Available tickets</th>
+          <th scope="col">Amount</th>
         </tr>  
       </thead>  
       <tbody>  
@@ -20,13 +21,20 @@
           <td>{{ presentation.movie.title }}</td>  
           <td>{{ presentation.room.number }}</td>  
           <td>{{ presentation.time }}</td> 
-          <td>{{ presentation.availableTickets }}</td>   
+          <td>{{ presentation.availableTickets }}</td>
+          <td>
+              <mat-chip-list>
+                  <mat-chip (click)="removeTicket(presentation)" class="disable-text-selection">-</mat-chip>
+                  <mat-chip (click)="addTicket(presentation)" class="disable-text-selection">+</mat-chip>
+              </mat-chip-list>
+              <div id="{{presentation.id}}_amount" class="disable-text-selection">0</div>
+          </td>   
         </tr>  
       </tbody>  
     </table>  
-    Selected presentation: {{ selectedPresentation | json }}
   </div>
-  <div class="col" *ngIf="selectedPresentation">
+  <div *ngIf="selectedPresentation">
     <presentation-details [presentation]="selectedPresentation"></presentation-details>
   </div>
 </div>
+<button type="submit" mat-raised-button color="primary" routerLink="/presentations">Order tickets</button>

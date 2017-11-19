@@ -67,4 +67,20 @@ export class PresentationsComponent implements OnInit {
     this.selectedPresentation = presentation;
   }
 
+  addTicket(presentation) {
+    var amount = parseInt(document.getElementById(presentation.id + "_amount").innerHTML);
+    if(amount < presentation.availableTickets) {
+      amount++;
+      document.getElementById(presentation.id + "_amount").innerHTML = amount.toString();
+    }
+  }
+
+  removeTicket(presentation) {
+    var amount = parseInt(document.getElementById(presentation.id + "_amount").innerHTML);
+    if(amount > 0) {
+      amount--;
+      document.getElementById(presentation.id + "_amount").innerHTML = amount.toString();
+    }
+  }
+
 }
