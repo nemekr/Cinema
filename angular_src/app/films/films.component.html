@@ -25,7 +25,10 @@
       </tbody>  
     </table>  
   </div>
+  <div class="col" *ngIf="addmode==true"> 
+    <movie-form (onSubmit)="modifyList($event)" (onCancel)="toggleAddmode()" [movie]="selectedMovie"></movie-form>
+  </div>
 </div>
-<button mat-raised-button class="btnAdd">Add movie</button>
-<button mat-raised-button color="primary">Edit movie</button>
-<button mat-raised-button color="warn" (click)="deleteMovie(selectedMovie)">Delete movie</button>
+<button mat-raised-button class="btnAdd" [disabled]="addmode==true" (click)="toggleAddmode()">Add movie</button>
+<button mat-raised-button color="primary" [disabled]="addmode==true">Edit movie</button>
+<button mat-raised-button color="warn" [disabled]="addmode==true" (click)="deleteMovie(selectedMovie)">Delete movie</button>

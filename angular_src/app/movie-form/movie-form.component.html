@@ -1,0 +1,99 @@
+<h1 class="display-2">New movie</h1>  
+<form (submit)="submit(movieForm)" #movieForm="ngForm">
+
+  <div class="form-group">  
+    <!-- <small id="locationHelp" class="form-text text-muted">Give the location of the issue (e.g. labor)</small> -->  
+    <mat-form-field>  
+      <input
+        name="title"
+        [(ngModel)]="model.title"
+        matInput type="text"
+        aria-describedby="titleHelp"
+        placeholder="Enter title"
+        required
+        #title="ngModel"
+      >
+      <mat-error *ngIf="title.invalid && (title.dirty || title.touched) && title.errors.required">
+        Title is required!
+      </mat-error>
+    </mat-form-field>  
+  </div>  
+
+  <div class="form-group">  
+    <!-- <small id="locationHelp" class="form-text text-muted">Give the location of the issue (e.g. labor)</small> -->  
+    <mat-form-field>  
+      <input
+        name="year"
+        [(ngModel)]="model.year"
+        matInput type="text"
+        aria-describedby="yearHelp"
+        placeholder="Enter year"
+        required
+        pattern="\d+"
+        #year="ngModel"
+      >
+      <mat-error *ngIf="year.invalid && (year.dirty || year.touched) && year.errors.required">
+        Year is required!
+      </mat-error>
+      <mat-error *ngIf="year.invalid && (year.dirty || year.touched) && year.errors.pattern">
+        Year must be a number!
+      </mat-error>
+    </mat-form-field>  
+  </div> 
+  
+  <div class="form-group">  
+    <!-- <small id="locationHelp" class="form-text text-muted">Give the location of the issue (e.g. labor)</small> -->  
+    <mat-form-field>  
+      <input
+        name="length"
+        [(ngModel)]="model.length"
+        matInput type="text"
+        aria-describedby="lengthHelp"
+        placeholder="Enter length"
+        required
+        pattern="\d+"
+        #length="ngModel"
+      >
+      <mat-error *ngIf="length.invalid && (length.dirty || length.touched) && length.errors.required">
+        Length is required!
+      </mat-error>
+      <mat-error *ngIf="length.invalid && (length.dirty || length.touched) && length.errors.pattern">
+        Length must be a number!
+      </mat-error>
+    </mat-form-field>  
+  </div>
+
+  <div class="form-group">  
+    <!-- <small id="locationHelp" class="form-text text-muted">Give the location of the issue (e.g. labor)</small> -->  
+    <mat-form-field>  
+      <input
+        name="prize"
+        [(ngModel)]="model.prize"
+        matInput type="text"
+        aria-describedby="prizeHelp"
+        placeholder="Enter prize"
+        required
+        pattern="\d+"
+        #prize="ngModel"
+      >
+      <mat-error *ngIf="prize.invalid && (prize.dirty || prize.touched) && prize.errors.required">
+        Prize is required!
+      </mat-error>
+      <mat-error *ngIf="prize.invalid && (prize.dirty || prize.touched) && prize.errors.pattern">
+        Prize must be a number!
+      </mat-error>
+    </mat-form-field>  
+  </div> 
+  
+  <div class="form-group">  
+    <!-- <small id="descriptionHelp" class="form-text text-muted">The error details</small> -->  
+    <mat-form-field>  
+      <textarea name="description" [(ngModel)]="model.description" required matInput type="text" aria-describedby="descriptionHelp" placeholder="Enter movie description" #description="ngModel"></textarea>  
+      <mat-error *ngIf="description.invalid && (description.dirty || description.touched) && description.errors.required">
+        Description is required!
+      </mat-error>
+    </mat-form-field>  
+  </div>
+  <button mat-raised-button class="btnCancel" (click)="cancel()">Cancel</button>
+  <button [disabled]="!movieForm.valid" type="submit" mat-raised-button class="btnSubmit">Save movie</button>
+</form>  

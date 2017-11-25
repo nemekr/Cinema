@@ -10,13 +10,15 @@ import { MovieService } from '../movie.service';
 export class FilmsComponent implements OnInit {
 
   selectedMovie: Movie;
+  addmode: boolean;
   
-    movies: Movie[] = [];
+  movies: Movie[] = [];
 
   constructor(
     private movieService: MovieService
   ) {
     this.movies = movieService.getMovies();
+    this.addmode = false;
    }
 
   ngOnInit() {
@@ -32,6 +34,16 @@ export class FilmsComponent implements OnInit {
       this.movies = this.movieService.getMovies();
       this.selectedMovie = null;
     }
+  }
+
+  toggleAddmode() {
+    this.addmode = !this.addmode;
+    console.log(this.addmode);
+  }
+
+  modifyList(movie: Movie) {
+    console.log(movie);
+    this.toggleAddmode();
   }
 
 }

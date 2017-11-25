@@ -32,6 +32,7 @@ import { FilmsComponent } from './films/films.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { PresentationService } from './presentation.service';
 import { MovieService } from './movie.service';
+import { MovieFormComponent } from './movie-form/movie-form.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { MovieService } from './movie.service';
     UsersComponent,
     FilmsComponent,
     RoomsComponent,
+    MovieFormComponent,
   ],
   imports: [
     BrowserModule,
