@@ -24,6 +24,8 @@
         </tr>  
       </tbody>  
     </table>  
-    Selected movie: {{ selectedMovie | json }}
   </div>
 </div>
+<button mat-raised-button class="btnAdd">Add movie</button>
+<button mat-raised-button color="primary">Edit movie</button>
+<button mat-raised-button color="warn" (click)="deleteMovie(selectedMovie)">Delete movie</button>

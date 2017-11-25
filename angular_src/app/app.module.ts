@@ -30,6 +30,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { UsersComponent } from './users/users.component';
 import { FilmsComponent } from './films/films.component';
 import { RoomsComponent } from './rooms/rooms.component';
+import { PresentationService } from './presentation.service';
+import { MovieService } from './movie.service';
 
 
 @NgModule({
@@ -68,7 +70,7 @@ import { RoomsComponent } from './rooms/rooms.component';
     // News
     FormsModule
   ],
-  providers: [],
+  providers: [PresentationService, MovieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

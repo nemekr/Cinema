@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../Movie';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-films',
@@ -10,33 +11,27 @@ export class FilmsComponent implements OnInit {
 
   selectedMovie: Movie;
   
-    movies: Movie[] = [
-      {
-          id:0,
-          title: 'asd1',
-          year: 1991,
-          length: 123,
-          description: 'the asd movie',
-          prize: 1500
-      },
+    movies: Movie[] = [];
 
-        {
-          id:1,
-          title: 'asd2',
-          year: 1994,
-          length: 123,
-          description: 'the asd movie reloaded',
-          prize: 2000
-        }
-    ];
-
-  constructor() { }
+  constructor(
+    private movieService: MovieService
+  ) {
+    this.movies = movieService.getMovies();
+   }
 
   ngOnInit() {
   }
 
   onSelectMovie(movie) {
     this.selectedMovie = movie;
+  }
+
+  deleteMovie(movie) {
+    if(movie != null) {
+      this.movieService.deleteMovie(movie);
+      this.movies = this.movieService.getMovies();
+      this.selectedMovie = null;
+    }
   }
 
 }
