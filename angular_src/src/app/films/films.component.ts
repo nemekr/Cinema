@@ -11,6 +11,7 @@ export class FilmsComponent implements OnInit {
 
   selectedMovie: Movie;
   addmode: boolean;
+  modifymode: boolean;
   
   movies: Movie[] = [];
 
@@ -19,6 +20,7 @@ export class FilmsComponent implements OnInit {
   ) {
     this.movies = movieService.getMovies();
     this.addmode = false;
+    this.modifymode = false;
    }
 
   ngOnInit() {
@@ -38,12 +40,23 @@ export class FilmsComponent implements OnInit {
 
   toggleAddmode() {
     this.addmode = !this.addmode;
-    console.log(this.addmode);
+  }
+
+  toggleModifymode() {
+    this.modifymode = !this.modifymode;
+  }
+
+  addToList(movie: Movie) {
+    movie.id = Date.now();
+    this.movieService.addMovie(movie);
+    this.movies = this.movieService.getMovies();
+    this.toggleAddmode();
   }
 
   modifyList(movie: Movie) {
-    console.log(movie);
-    this.toggleAddmode();
+    this.movieService.modifyMovie(movie);
+    this.movies = this.movieService.getMovies();
+    this.toggleModifymode();
   }
 
 }

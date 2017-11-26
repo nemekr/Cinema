@@ -18,7 +18,7 @@ export class MovieFormComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.model = Object.assign({}, this.movie); 
+    this.model = Object.assign({}, this.movie);
   }
 
   submit(form) {

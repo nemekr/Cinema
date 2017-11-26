@@ -38,4 +38,14 @@ export class MovieService {
     this.movies.splice(index,1);
   }
 
+  addMovie(movie) {
+    this.movies.push(movie);
+  }
+
+  modifyMovie(movie) {
+    var foundMovie = this.movies.find(m => m.id == movie.id);
+    var index = this.movies.indexOf(foundMovie);
+    Object.assign(this.movies[index],movie);
+  }
+
 }

@@ -26,9 +26,12 @@
     </table>  
   </div>
   <div class="col" *ngIf="addmode==true"> 
-    <movie-form (onSubmit)="modifyList($event)" (onCancel)="toggleAddmode()" [movie]="selectedMovie"></movie-form>
+    <movie-form (onSubmit)="addToList($event)" (onCancel)="toggleAddmode()" [movie]="selectedMovie"></movie-form>
+  </div>
+  <div class="col" *ngIf="modifymode==true"> 
+    <movie-form (onSubmit)="modifyList($event)" (onCancel)="toggleModifymode()" [movie]="selectedMovie"></movie-form>
   </div>
 </div>
-<button mat-raised-button class="btnAdd" [disabled]="addmode==true" (click)="toggleAddmode()">Add movie</button>
-<button mat-raised-button color="primary" [disabled]="addmode==true">Edit movie</button>
-<button mat-raised-button color="warn" [disabled]="addmode==true" (click)="deleteMovie(selectedMovie)">Delete movie</button>
+<button mat-raised-button class="btnAdd" [disabled]="(addmode==true) || (modifymode==true)" (click)="toggleAddmode()">Add movie</button>
+<button mat-raised-button color="primary" [disabled]="(addmode==true) || (!selectedMovie) || (modifymode == true)" (click)="toggleModifymode()">Edit movie</button>
+<button mat-raised-button color="warn" [disabled]="(addmode==true) || (modifymode==true)" (click)="deleteMovie(selectedMovie)">Delete movie</button>
