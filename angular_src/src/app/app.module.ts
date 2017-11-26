@@ -33,6 +33,8 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { PresentationService } from './presentation.service';
 import { MovieService } from './movie.service';
 import { MovieFormComponent } from './movie-form/movie-form.component';
+import { CinemaRoomService } from './cinema-room.service';
+import { RoomFormComponent } from './room-form/room-form.component';
 
 
 @NgModule({
@@ -50,6 +52,7 @@ import { MovieFormComponent } from './movie-form/movie-form.component';
     FilmsComponent,
     RoomsComponent,
     MovieFormComponent,
+    RoomFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,7 @@ import { MovieFormComponent } from './movie-form/movie-form.component';
     // News
     FormsModule
   ],
-  providers: [PresentationService, MovieService],
+  providers: [PresentationService, MovieService, CinemaRoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,68 @@
+<h1 class="display-2">Room data</h1>  
+<form (submit)="submit(roomForm)" #roomForm="ngForm">
+
+  <div class="form-group">  
+    <!-- <small id="locationHelp" class="form-text text-muted">Give the location of the issue (e.g. labor)</small> -->  
+    <mat-form-field>  
+      <input
+        name="type"
+        [(ngModel)]="model.type"
+        matInput type="text"
+        aria-describedby="typeHelp"
+        placeholder="Enter type"
+        required
+        #type="ngModel"
+      >
+      <mat-error *ngIf="type.invalid && (type.dirty || type.touched) && type.errors.required">
+        Type is required!
+      </mat-error>
+    </mat-form-field>  
+  </div>  
+
+  <div class="form-group">  
+    <!-- <small id="locationHelp" class="form-text text-muted">Give the location of the issue (e.g. labor)</small> -->  
+    <mat-form-field>  
+      <input
+        name="capacity"
+        [(ngModel)]="model.capacity"
+        matInput type="text"
+        aria-describedby="capacityHelp"
+        placeholder="Enter capacity"
+        required
+        pattern="\d+"
+        #capacity="ngModel"
+      >
+      <mat-error *ngIf="capacity.invalid && (capacity.dirty || capacity.touched) && capacity.errors.required">
+        Capacity is required!
+      </mat-error>
+      <mat-error *ngIf="capacity.invalid && (capacity.dirty || capacity.touched) && capacity.errors.pattern">
+        Capacity must be a number!
+      </mat-error>
+    </mat-form-field>  
+  </div> 
+  
+  <div class="form-group">  
+    <!-- <small id="locationHelp" class="form-text text-muted">Give the location of the issue (e.g. labor)</small> -->  
+    <mat-form-field>  
+      <input
+        name="number"
+        [(ngModel)]="model.number"
+        matInput type="text"
+        aria-describedby="numberHelp"
+        placeholder="Enter number"
+        required
+        pattern="\d+"
+        #number="ngModel"
+      >
+      <mat-error *ngIf="number.invalid && (number.dirty || number.touched) && number.errors.required">
+        Number is required!
+      </mat-error>
+      <mat-error *ngIf="number.invalid && (number.dirty || number.touched) && number.errors.pattern">
+        Number must be a number!
+      </mat-error>
+    </mat-form-field>  
+  </div>
+  
+  <button mat-raised-button class="btnCancel" (click)="cancel()">Cancel</button>
+  <button [disabled]="!roomForm.valid" type="submit" mat-raised-button class="btnSubmit">Save room</button>
+</form>  
