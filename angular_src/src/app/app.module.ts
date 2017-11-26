@@ -11,7 +11,8 @@ import {
   MatInputModule,
   MatButtonToggleModule,
   MatChipsModule,
-  MatCardModule
+  MatCardModule,
+  MatSelectModule
 } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -35,6 +36,7 @@ import { MovieService } from './movie.service';
 import { MovieFormComponent } from './movie-form/movie-form.component';
 import { CinemaRoomService } from './cinema-room.service';
 import { RoomFormComponent } from './room-form/room-form.component';
+import { OrderService } from './order.service';
 
 
 @NgModule({
@@ -68,6 +70,7 @@ import { RoomFormComponent } from './room-form/room-form.component';
     MatButtonToggleModule, 
     MatChipsModule,
     MatCardModule,
+    MatSelectModule,
     //
 
     FlexLayoutModule,
@@ -75,7 +78,7 @@ import { RoomFormComponent } from './room-form/room-form.component';
     // News
     FormsModule
   ],
-  providers: [PresentationService, MovieService, CinemaRoomService],
+  providers: [PresentationService, MovieService, CinemaRoomService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

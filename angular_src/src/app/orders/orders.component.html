@@ -18,10 +18,29 @@
           <th scope="row">{{ order.id }}</th>  
           <td>{{ order.user.email}}</td>  
           <td>{{ order.date }}</td>  
-          <td>{{ order.status }}</td>   
+          <td>
+              <form *ngIf="selectedOrder === order" #orderForm="ngForm">
+                  <div class="form-group">
+                      <mat-select
+                          name="status"
+                          [(ngModel)]="model.status"
+                          aria-describedby="statusHelp"
+                          placeholder="Select status"
+                          required
+                          #status="ngModel"
+                        >
+                        <mat-option value="PENDING">PENDING</mat-option>
+                        <mat-option value="APPROVED">APPROVED</mat-option>
+                        <mat-option value="CLOSED">CLOSED</mat-option>
+                      </mat-select>  
+                  </div>
+              </form>
+              <div *ngIf="selectedOrder != order">{{ order.status }}</div>
+          </td>   
         </tr>  
       </tbody>  
     </table>  
-    Selected order: {{ selectedOrder | json }}
   </div>
 </div>
+<button mat-raised-button color="primary" (click)="submit(orderForm)" [disabled]="(!selectedOrder)">Modify status</button>
+<button mat-raised-button color="warn" [disabled]="(!selectedOrder)" (click)="deleteOrder(selectedOrder)">Delete order</button>

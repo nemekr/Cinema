@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Order } from '../Order';
-import { OrderItem } from '../OrderItem';
-import { User } from '../User';
+import { OrderService } from '../order.service';
+import { Status } from '../Status';
 
 @Component({
   selector: 'app-orders',
@@ -10,56 +10,44 @@ import { User } from '../User';
 })
 export class OrdersComponent implements OnInit {
   selectedOrder: Order;
+  selectedStatus: Status;
   
-    orders: Order[] = [
-      {
-          id:0,
-          user: {
-            id: 0,
-            email: 'asd@asd.hu',
-            password: 'asd',
-            name: 'asd',
-            address: 'hid alatt',
-            role: 'user'
-          },
-          date: new Date(),
-          status: 'OPEN',
-          items: [
-            {
-              id: 0,
-              presentation: {
-                id: 0,
-                movie:
-                {
-                  id:0,
-                  title: 'asd1',
-                  year: 1991,
-                  length: 123,
-                  description: 'the asd movie',
-                  prize: 1500
-                },
-                room:
-                {
-                  id:0,
-                  capacity:20,
-                  number:1,
-                  type:'VIP'
-                },
-                time:new Date(),
-                availableTickets:20
-              },
-              quantity: 1
-            }
-          ]
-      }
-    ];
+  orders: Order[] = [];
+  model: Order;
 
-  constructor() { }
+  constructor(
+    private orderService: OrderService
+  ) {
+    this.orders = orderService.getOrders();
+   }
 
   ngOnInit() {
+    this.model = Object.assign({}, this.selectedOrder);
+  }
+
+  ngOnChanges() {
+    this.model = Object.assign({}, this.selectedOrder);
   }
 
   onSelectOrder(order) {
-    this.selectedOrder = order;
+    if(this.selectedOrder != order) {
+      this.selectedOrder = order;
+      this.model = Object.assign({}, this.selectedOrder);
+    }
+  }
+
+  submit(form) {
+    this.modifyOrder(this.model);
+  }
+
+  deleteOrder(order) {
+    this.orderService.deleteOrder(order);
+    this.orders = this.orderService.getOrders();
+    this.selectedOrder = null;
+  }
+
+  modifyOrder(order) {
+    this.orderService.modifyOrder(order);
+    this.orders = this.orderService.getOrders();
   }
 }
