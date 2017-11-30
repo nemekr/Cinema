@@ -13,6 +13,7 @@ import { MyProfileComponent } from '../my-profile/my-profile.component';
 import { OrdersComponent } from '../orders/orders.component';
 import { RoomsComponent } from '../rooms/rooms.component';
 import { UsersComponent } from '../users/users.component';
+import { AdPresentationsComponent } from '../ad-presentations/ad-presentations.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,11 @@ const routes: Routes = [
   {
     path: 'presentations',
     component: PresentationsComponent
+  },
+
+  {
+    path: 'ad-presentations',
+    component: AdPresentationsComponent
   },
 
   {

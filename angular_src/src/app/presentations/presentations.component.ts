@@ -18,10 +18,10 @@ export class PresentationsComponent implements OnInit {
   constructor(
     private presentationService: PresentationService
   ) {
-    this.presentations = presentationService.getPresentations();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.presentations = await this.presentationService.getPresentations();
   }
 
   onSelectPresentation(presentation) {

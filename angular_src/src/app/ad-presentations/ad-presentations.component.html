@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col">
+    <h1 class="display-2">Presentations</h1>  
+
+    <!--<status-filter [status]="selectedStatus" (onChange)="onFilterChange($event)"></status-filter> -->
+
+    <table class="table">  
+      <thead>  
+        <tr>  
+          <th scope="col">#</th>  
+          <th scope="col">Movie</th>  
+          <th scope="col">Room</th>  
+          <th scope="col">Time</th>
+          <th scope="col">Available tickets</th>
+        </tr>  
+      </thead>  
+      <tbody>  
+        <tr *ngFor="let presentation of presentations" (click)="onSelectPresentation(presentation)" [class.table-info]="presentation === selectedPresentation" >  
+          <th scope="row">{{ presentation.id }}</th>  
+          <td>{{ presentation.movie.title }}</td>  
+          <td>{{ presentation.room.number }}</td>  
+          <td>{{ presentation.time }}</td>  
+          <td>{{ presentation.availableTickets }}</td>    
+        </tr>  
+      </tbody>  
+    </table>  
+  </div>
+  <div class="col" *ngIf="addmode==true"> 
+    <ad-presentation-form (onSubmit)="addToList($event)" (onCancel)="toggleAddmode()" [presentation]="selectedPresentation"></ad-presentation-form>
+  </div>
+  <div class="col" *ngIf="modifymode==true"> 
+    <ad-presentation-form (onSubmit)="modifyList($event)" (onCancel)="toggleModifymode()" [presentation]="selectedPresentation"></ad-presentation-form>
+  </div>
+</div>
+<button mat-raised-button class="btnAdd" [disabled]="(addmode==true) || (modifymode==true)" (click)="toggleAddmode()">Add presentation</button>
+<button mat-raised-button color="primary" [disabled]="(addmode==true) || (!selectedPresentation) || (modifymode == true)" (click)="toggleModifymode()">Edit presentation</button>
+<button mat-raised-button color="warn" [disabled]="(addmode==true) || (modifymode==true) || (!selectedPresentation)" (click)="deletePresentation(selectedPresentation)">Delete presentation</button>

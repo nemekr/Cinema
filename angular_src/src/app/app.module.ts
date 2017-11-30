@@ -38,6 +38,8 @@ import { CinemaRoomService } from './cinema-room.service';
 import { RoomFormComponent } from './room-form/room-form.component';
 import { OrderService } from './order.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AdPresentationsComponent } from './ad-presentations/ad-presentations.component';
+import { AdPresentationFormComponent } from './ad-presentation-form/ad-presentation-form.component';
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { HttpClientModule } from '@angular/common/http';
     RoomsComponent,
     MovieFormComponent,
     RoomFormComponent,
+    AdPresentationsComponent,
+    AdPresentationFormComponent,
   ],
   imports: [
     BrowserModule,
