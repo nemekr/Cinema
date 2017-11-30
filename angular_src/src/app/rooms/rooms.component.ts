@@ -17,20 +17,22 @@ export class RoomsComponent implements OnInit {
   constructor(
     private cinemaRoomService: CinemaRoomService
   ) { 
-    this.rooms = cinemaRoomService.getRooms();
+    this.addmode = false;
+    this.modifymode = false;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.rooms = await this.cinemaRoomService.getRooms();
   }
 
   onSelectRoom(room) {
     this.selectedRoom = room;
   }
 
-  deleteRoom(room) {
+  async deleteRoom(room) {
     if(room != null) {
-      this.cinemaRoomService.deleteRoom(room);
-      this.rooms = this.cinemaRoomService.getRooms();
+      await this.cinemaRoomService.deleteRoom(room);
+      this.rooms = await this.cinemaRoomService.getRooms();
       this.selectedRoom = null;
     }
   }
@@ -43,16 +45,18 @@ export class RoomsComponent implements OnInit {
     this.modifymode = !this.modifymode;
   }
 
-  addToList(room: CinemaRoom) {
+  async addToList(room: CinemaRoom) {
+    this.selectedRoom = null;
     room.id = Date.now();
-    this.cinemaRoomService.addRoom(room);
-    this.rooms = this.cinemaRoomService.getRooms();
+    await this.cinemaRoomService.addRoom(room);
+    this.rooms = await this.cinemaRoomService.getRooms();
     this.toggleAddmode();
   }
 
-  modifyList(room: CinemaRoom) {
-    this.cinemaRoomService.modifyRoom(room);
-    this.rooms = this.cinemaRoomService.getRooms();
+  async modifyList(room: CinemaRoom) {
+    this.selectedRoom = null;
+    await this.cinemaRoomService.modifyRoom(room);
+    this.rooms = await this.cinemaRoomService.getRooms();
     this.toggleModifymode();
   }
 

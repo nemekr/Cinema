@@ -32,4 +32,4 @@
   </div>
   <button mat-raised-button class="btnAdd" [disabled]="(addmode==true) || (modifymode==true)" (click)="toggleAddmode()">Add room</button>
   <button mat-raised-button color="primary" [disabled]="(addmode==true) || (!selectedRoom) || (modifymode == true)" (click)="toggleModifymode()">Edit room</button>
-  <button mat-raised-button color="warn" [disabled]="(addmode==true) || (modifymode==true)" (click)="deleteRoom(selectedRoom)">Delete room</button>
+  <button mat-raised-button color="warn" [disabled]="(addmode==true) || (modifymode==true) || (!selectedRoom)" (click)="deleteRoom(selectedRoom)">Delete room</button>
