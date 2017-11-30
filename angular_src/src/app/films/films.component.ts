@@ -18,22 +18,22 @@ export class FilmsComponent implements OnInit {
   constructor(
     private movieService: MovieService
   ) {
-    this.movies = movieService.getMovies();
     this.addmode = false;
     this.modifymode = false;
    }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.movies = await this.movieService.getMovies();
   }
 
   onSelectMovie(movie) {
     this.selectedMovie = movie;
   }
 
-  deleteMovie(movie) {
+  async deleteMovie(movie) {
     if(movie != null) {
-      this.movieService.deleteMovie(movie);
-      this.movies = this.movieService.getMovies();
+      await this.movieService.deleteMovie(movie);
+      this.movies = await this.movieService.getMovies();
       this.selectedMovie = null;
     }
   }
@@ -46,16 +46,18 @@ export class FilmsComponent implements OnInit {
     this.modifymode = !this.modifymode;
   }
 
-  addToList(movie: Movie) {
+  async addToList(movie: Movie) {
+    this.selectedMovie = null;
     movie.id = Date.now();
-    this.movieService.addMovie(movie);
-    this.movies = this.movieService.getMovies();
+    await this.movieService.addMovie(movie);
+    this.movies = await this.movieService.getMovies();
     this.toggleAddmode();
   }
 
-  modifyList(movie: Movie) {
-    this.movieService.modifyMovie(movie);
-    this.movies = this.movieService.getMovies();
+  async modifyList(movie: Movie) {
+    this.selectedMovie = null;
+    await this.movieService.modifyMovie(movie);
+    this.movies = await this.movieService.getMovies();
     this.toggleModifymode();
   }
 

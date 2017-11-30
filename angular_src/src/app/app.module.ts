@@ -37,6 +37,7 @@ import { MovieFormComponent } from './movie-form/movie-form.component';
 import { CinemaRoomService } from './cinema-room.service';
 import { RoomFormComponent } from './room-form/room-form.component';
 import { OrderService } from './order.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { OrderService } from './order.service';
     MatChipsModule,
     MatCardModule,
     MatSelectModule,
+    HttpClientModule,
     //
 
     FlexLayoutModule,

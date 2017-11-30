@@ -26,8 +26,8 @@ import cinema.cinema.service.OrderService;
 import cinema.cinema.service.UserService;
 
 @SpringBootApplication
-public class CinemaApplication implements CommandLineRunner {
-
+public class CinemaApplication/* implements CommandLineRunner*/ {
+/*
 	@Autowired
 	private UserService userService;
 
@@ -78,7 +78,7 @@ public class CinemaApplication implements CommandLineRunner {
 		}
 	}
 	
-	
+	*/
 	public static void main(String[] args) {
 		SpringApplication.run(CinemaApplication.class, args);
 	}
