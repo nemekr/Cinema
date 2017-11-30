@@ -12,7 +12,7 @@
         required
         #movie="ngModel"
       >
-      <mat-option *ngFor="let movie of movies" value="{{movie}}">{{ movie.title }}</mat-option>
+      <mat-option *ngFor="let movie of movies" [value]="movie">{{ movie.title }}</mat-option>
     </mat-select>
     <mat-error *ngIf="movie.invalid && (movie.dirty || movie.touched) && movie.errors.required">
       Movie is required!
@@ -30,7 +30,7 @@
         required
         #room="ngModel"
       >
-      <mat-option *ngFor="let room of rooms" value="{{room}}">{{ room.number }}</mat-option>
+      <mat-option *ngFor="let room of rooms" [value]="room">{{ room.number }}</mat-option>
     </mat-select>
     <mat-error *ngIf="room.invalid && (room.dirty || room.touched) && room.errors.required">
       Room is required!
@@ -48,14 +48,14 @@
         aria-describedby="timeHelp"
         placeholder="Enter time"
         required
-        pattern="\d\d\d\d.\d\d.\d\d. \d\d:\d\d"
+        pattern="\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\dZ"
         #time="ngModel"
       >
       <mat-error *ngIf="time.invalid && (time.dirty || time.touched) && time.errors.required">
         time is required!
       </mat-error>
       <mat-error *ngIf="time.invalid && (time.dirty || time.touched) && time.errors.pattern">
-        time must be in the correct format! (eg. 2017.11.16. 20:31)
+        Correct format eg.: 2017-11-16T20:31:00Z
       </mat-error>
     </mat-form-field>  
   </div> 
