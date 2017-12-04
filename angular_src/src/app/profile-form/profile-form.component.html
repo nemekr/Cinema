@@ -1,0 +1,60 @@
+<h1 class="display-2">Profile data</h1>  
+<form (submit)="submit(profileForm)" #profileForm="ngForm">
+
+  <div class="form-group">  
+    <!-- <small id="locationHelp" class="form-text text-muted">Give the location of the issue (e.g. labor)</small> -->  
+    <mat-form-field>  
+      <input
+        name="name"
+        [(ngModel)]="model.name"
+        matInput type="text"
+        aria-describedby="nameHelp"
+        placeholder="Enter name"
+        required
+        #name="ngModel"
+      >
+      <mat-error *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.required">
+        Name is required!
+      </mat-error>
+    </mat-form-field>  
+  </div> 
+  
+  <div class="form-group">  
+    <!-- <small id="locationHelp" class="form-text text-muted">Give the location of the issue (e.g. labor)</small> -->  
+    <mat-form-field>  
+      <input
+        name="password"
+        [(ngModel)]="model.password"
+        matInput type="password"
+        aria-describedby="passwordHelp"
+        placeholder="Enter password"
+        required
+        #password="ngModel"
+      >
+      <mat-error *ngIf="password.invalid && (password.dirty || password.touched) && password.errors.required">
+        Password is required!
+      </mat-error>
+    </mat-form-field>  
+  </div>
+
+  <div class="form-group">  
+      <!-- <small id="locationHelp" class="form-text text-muted">Give the location of the issue (e.g. labor)</small> -->  
+      <mat-form-field>  
+        <input
+          name="address"
+          [(ngModel)]="model.address"
+          matInput type="text"
+          aria-describedby="addressHelp"
+          placeholder="Enter address"
+          required
+          #address="ngModel"
+        >
+        <mat-error *ngIf="address.invalid && (address.dirty || address.touched) && address.errors.required">
+          Address is required!
+        </mat-error>
+      </mat-form-field>  
+    </div>
+  
+  <button mat-raised-button class="btnCancel" (click)="cancel()">Cancel</button>
+  <button [disabled]="!profileForm.valid" type="submit" mat-raised-button class="btnSubmit">Save profile</button>
+</form>  

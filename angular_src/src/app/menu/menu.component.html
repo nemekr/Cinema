@@ -1,0 +1,55 @@
+<mat-toolbar color="primary">
+  <button mat-button routerLink="/">
+    <mat-icon>home</mat-icon>
+    Cinema application
+  </button>
+
+  <span class="fill-remaining-space" fxHide="false" fxHide.gt-sm></span>
+  <div class="w-100" fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button mat-button routerLink="/presentations">Presentations</button>
+    <span class="fill-remaining-space"></span>
+    <div *ngIf="!authService.isLoggedIn">
+      <button mat-button routerLink="/login">Login</button>
+      <button mat-button routerLink="/register">Register</button>
+    </div>
+    <div *ngIf="authService.isLoggedIn && authService.user.role == 'USER'">
+      <span>Hello, {{ authService.user.name }}!</span>
+      <button mat-button (click)="logout()">Logout</button>
+      <button mat-button routerLink="/myprofile"> My profile </button>
+      <button mat-button routerLink="/myorders"> My orders </button>
+    </div>
+    <div *ngIf="authService.isLoggedIn && authService.user.role == 'ADMIN'">
+      <button mat-button (click)="logout()">Logout</button>
+      <button mat-button routerLink="/orders"> Orders </button>
+      <button mat-button routerLink="/users"> Users </button>
+      <button mat-button routerLink="/films"> Films </button>
+      <button mat-button routerLink="/rooms"> Rooms </button>
+      <button mat-button routerLink="/ad-presentations"> Ad-Presentations </button>
+    </div>
+  </div>
+  <button mat-icon-button [matMenuTriggerFor]="menu" fxHide="false" fxHide.gt-sm>
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu xPosition="before" #menu="matMenu">
+  <button mat-menu-item routerLink="/presentations">Presentations</button>
+  <div *ngIf="!authService.isLoggedIn">
+    <button mat-menu-item routerLink="/login">Login</button>
+    <button mat-menu-item routerLink="/register">Register</button>
+  </div>
+  <div *ngIf="authService.isLoggedIn">
+    <button mat-button (click)="logout()">Logout</button>
+    <div *ngIf="authService.user.role == 'USER'">
+      <button mat-button routerLink="/myprofile"> My profile </button>
+      <button mat-button routerLink="/myorders"> My orders </button>
+    </div>
+    <div *ngIf="authService.user.role == 'ADMIN'">
+      <button mat-button routerLink="/orders"> Orders </button>
+      <button mat-button routerLink="/users"> Users </button>
+      <button mat-button routerLink="/films"> Films </button>
+      <button mat-button routerLink="/rooms"> Rooms </button>
+      <button mat-button routerLink="/ad-presentations"> Ad-Presentations </button>
+    </div>
+  </div>
+</mat-menu>

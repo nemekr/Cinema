@@ -1,10 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Order } from './Order';
 import { Status } from './Status';
+import { User } from './User';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+const HttpHeader = {
+  headers: new HttpHeaders( {
+    'Content-Type': 'application/json'
+  })
+}
 
 @Injectable()
 export class OrderService {
-
+/*
 orders: Order[] = [
   {
       id:0,
@@ -86,14 +94,28 @@ orders: Order[] = [
         }
         ]
     }
-  ];
+  ];*/
 
-  constructor() { }
+  
 
-  getOrders() {
-    return this.orders;
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  getOrders() : Promise<Order[]> {
+    return this.http.get<Order[]>('api/order/allorder').toPromise();
   }
 
+  getUserOrders(user : User) : Promise<Order[]> {
+    return this.http.post<Order[]>('api/user/userorder', {
+      'email': user.email,
+      'password': user.password,
+      'name': user.name,
+      'address': user.address,
+      'role': user.role
+    }, HttpHeader ).toPromise();
+  }
+ /*
   getOrder(id) {
     return this.orders.find(o => o.id == id);
   }
@@ -107,6 +129,6 @@ orders: Order[] = [
     var foundOrder = this.orders.find(o => o.id == order.id);
     var index = this.orders.indexOf(foundOrder);
     Object.assign(this.orders[index],order);
-  }
+  } */
 
 }

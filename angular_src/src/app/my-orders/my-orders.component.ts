@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from '../Order';
+import { OrderService } from '../order.service';
+import { Status } from '../Status';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-my-orders',
@@ -7,9 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyOrdersComponent implements OnInit {
 
-  constructor() { }
+  selectedOrder: Order;
+  selectedStatus: Status;
+  
+  orders: Order[] = [];
+  model: Order;
 
-  ngOnInit() {
+  constructor(
+    private orderService: OrderService,
+  ) {
+
+   }
+
+  async ngOnInit() {
+    this.orders =  await this.orderService.getOrders();
   }
 
+  ngOnChanges() {
+    this.model = Object.assign({}, this.selectedOrder);
+  }
+
+  onSelectOrder(order) {
+    if(this.selectedOrder != order) {
+      this.selectedOrder = order;
+      this.model = Object.assign({}, this.selectedOrder);
+    }
+  }
 }

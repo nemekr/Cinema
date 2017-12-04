@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../User'; 
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-users',
@@ -9,30 +10,13 @@ import { User } from '../User';
 export class UsersComponent implements OnInit {
 
   selectedUser: User;
-  
-    users: User[] = [
-      {
-          id:0,
-          email: 'asd@asd.hu',
-          password: 'asd',
-          name: 'asd',
-          address: 'hid alatt',
-          role: 'USER'
-      },
 
-        {
-          id:1,
-          email: 'dsa@dsa.uh',
-          password: 'dsa',
-          name: 'dsa',
-          address: 'volgy felett',
-          role: 'ADMIN'
-        }
-    ];
+  users: User[] = [];
 
-  constructor() { }
+  constructor( private userService: UserService ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.users = await this.userService.getUsers();
   }
 
   onSelectUser(user) {

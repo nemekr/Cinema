@@ -16,13 +16,13 @@ export class OrdersComponent implements OnInit {
   model: Order;
 
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
   ) {
-    this.orders = orderService.getOrders();
+
    }
 
-  ngOnInit() {
-    this.model = Object.assign({}, this.selectedOrder);
+  async ngOnInit() {
+    this.orders =  await this.orderService.getOrders();
   }
 
   ngOnChanges() {
@@ -36,6 +36,7 @@ export class OrdersComponent implements OnInit {
     }
   }
 
+  /*
   submit(form) {
     this.modifyOrder(this.model);
   }
@@ -49,5 +50,5 @@ export class OrdersComponent implements OnInit {
   modifyOrder(order) {
     this.orderService.modifyOrder(order);
     this.orders = this.orderService.getOrders();
-  }
+  }*/
 }

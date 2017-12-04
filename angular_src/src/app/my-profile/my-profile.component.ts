@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../User'; 
+import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -6,10 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-profile.component.css']
 })
 export class MyProfileComponent implements OnInit {
+  
+  user: User;
+  modifymode: boolean;
+  
+  constructor( private userService: UserService, private authService: AuthService ) { 
+    this.modifymode = false;
+  }
+  
+  async ngOnInit() {
+    this.user = await this.authService.user;
+  }
 
-  constructor() { }
+  toggleModifymode() {
+    this.modifymode = !this.modifymode;
+  }
 
-  ngOnInit() {
+  async modifyUser(user: User) {
+    await this.userService.modifyUser(user);
+    this.toggleModifymode();
   }
 
 }

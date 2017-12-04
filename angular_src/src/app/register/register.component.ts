@@ -1,15 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../User';
+import { UserService } from '../user.service';
 
 @Component({
-  selector: 'app-register',
+  selector: 'register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  selectedUser: User;
+  users: User[] = [];
 
-  constructor() { }
+  constructor( private userService: UserService ) { }
 
   ngOnInit() {
+    
   }
 
+  async addToList(user: User) {
+    this.selectedUser = null;
+    user.id = Date.now();
+    await this.userService.addUser(user);
+    this.users = await this.userService.getUsers();
+  }
 }
+

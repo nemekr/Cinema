@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import cinema.cinema.entity.CinemaRoom;
 import cinema.cinema.entity.Movie;
@@ -26,7 +27,7 @@ import cinema.cinema.service.OrderService;
 import cinema.cinema.service.UserService;
 
 @SpringBootApplication
-public class CinemaApplication/* implements CommandLineRunner*/ {
+public class CinemaApplication/* implements CommandLineRunner*/ extends WebMvcConfigurerAdapter {
 /*
 	@Autowired
 	private UserService userService;

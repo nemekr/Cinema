@@ -21,11 +21,11 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepo;
 	
-	private ArrayList<User> loggedInUsers;
+	//private ArrayList<User> loggedInUsers;
 	
 	private User user;
 	
-	public User login(String email, String password) {
+	/*public User login(String email, String password) {
 		Optional<User> daoUser = userRepo.findByEmail(email);
 		if (daoUser.isPresent()) {
 			user = daoUser.get();
@@ -54,7 +54,30 @@ public class UserService {
 			}
 		}
 		throw new IllegalArgumentException("Invalid user!");
-	}
+	}*/
+	
+	public User login(User user) {
+        if (isValid(user)) {
+            return this.user = userRepo.findByEmail(user.getEmail()).get();
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public void logout() { 
+        user = null; 
+    } 
+    
+    public boolean isValid(User user) {
+        return userRepo.findByEmailAndPassword(user.getEmail(), user.getPassword()).isPresent();
+    }
+    
+    public boolean isLoggedIn() {
+        return user != null;
+    }
+    
+    public User getLoggedInUser() { 
+        return user; 
+    } 
 
 	@Transactional
 	public User register(User registerUser) {

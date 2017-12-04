@@ -37,9 +37,14 @@ import { MovieFormComponent } from './movie-form/movie-form.component';
 import { CinemaRoomService } from './cinema-room.service';
 import { RoomFormComponent } from './room-form/room-form.component';
 import { OrderService } from './order.service';
+import { UserService } from './user.service';
+import { AuthService } from './auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AdPresentationsComponent } from './ad-presentations/ad-presentations.component';
 import { AdPresentationFormComponent } from './ad-presentation-form/ad-presentation-form.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { MenuComponent } from './menu/menu.component';
+import { ProfileFormComponent } from './profile-form/profile-form.component';
 
 
 @NgModule({
@@ -60,6 +65,9 @@ import { AdPresentationFormComponent } from './ad-presentation-form/ad-presentat
     RoomFormComponent,
     AdPresentationsComponent,
     AdPresentationFormComponent,
+    RegistrationFormComponent,
+    MenuComponent,
+    ProfileFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +92,7 @@ import { AdPresentationFormComponent } from './ad-presentation-form/ad-presentat
     // News
     FormsModule
   ],
-  providers: [PresentationService, MovieService, CinemaRoomService, OrderService],
+  providers: [PresentationService, MovieService, CinemaRoomService, OrderService, UserService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
