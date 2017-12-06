@@ -45,6 +45,7 @@ import { AdPresentationFormComponent } from './ad-presentation-form/ad-presentat
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProfileFormComponent } from './profile-form/profile-form.component';
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -92,7 +93,7 @@ import { ProfileFormComponent } from './profile-form/profile-form.component';
     // News
     FormsModule
   ],
-  providers: [PresentationService, MovieService, CinemaRoomService, OrderService, UserService, AuthService],
+  providers: [PresentationService, MovieService, CinemaRoomService, OrderService, UserService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

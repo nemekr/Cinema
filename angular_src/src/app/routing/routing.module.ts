@@ -15,6 +15,7 @@ import { OrdersComponent } from '../orders/orders.component';
 import { RoomsComponent } from '../rooms/rooms.component';
 import { UsersComponent } from '../users/users.component';
 import { AdPresentationsComponent } from '../ad-presentations/ad-presentations.component';
+import { AuthGuard } from '../auth.guard';
 
 const routes: Routes = [
   {
@@ -44,37 +45,51 @@ const routes: Routes = [
 
   {
     path: 'ad-presentations',
-    component: AdPresentationsComponent
+    component: AdPresentationsComponent,
+    canActivate: [AuthGuard],
+    data: {roles: ['ADMIN']}
   },
 
   {
     path: 'films',
-    component: FilmsComponent
+    component: FilmsComponent,
+    canActivate: [AuthGuard],
+    data: {roles: ['ADMIN']}
   },
 
   {
     path: 'myorders',
-    component: MyOrdersComponent
+    component: MyOrdersComponent,
+    canActivate: [AuthGuard],
+    data: {roles: ['USER']}
   },
 
   {
     path: 'myprofile',
-    component: MyProfileComponent
+    component: MyProfileComponent,
+    canActivate: [AuthGuard],
+    data: {roles: ['USER']}
   },
 
   {
     path: 'orders',
-    component: OrdersComponent
+    component: OrdersComponent,
+    canActivate: [AuthGuard],
+    data: {roles: ['ADMIN']}
   },
 
   {
     path: 'rooms',
-    component: RoomsComponent
+    component: RoomsComponent,
+    canActivate: [AuthGuard],
+    data: {roles: ['ADMIN']}
   },
 
   {
     path: 'users',
-    component: UsersComponent
+    component: UsersComponent,
+    canActivate: [AuthGuard],
+    data: {roles: ['ADMIN']}
   }
 ];
 
