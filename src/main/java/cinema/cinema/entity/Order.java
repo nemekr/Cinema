@@ -34,7 +34,7 @@ public class Order extends BaseEntity {
 	@Column( nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Status status;
-	@OneToMany(cascade={CascadeType.ALL})
+	@OneToMany(cascade={CascadeType.MERGE})
 	@JoinColumn(name="orderId")
 	private List<OrderItem> items;
 }

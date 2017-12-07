@@ -115,6 +115,15 @@ orders: Order[] = [
       'role': user.role
     }, HttpHeader ).toPromise();
   }
+
+  addOrder(order) : Promise<Order> {
+    return this.http.post<Order>('api/order/create', {
+      'user': order.user,
+      'date': order.date,
+      'status': order.status,
+      'items': order.items
+    }, HttpHeader).toPromise();
+  }
  /*
   getOrder(id) {
     return this.orders.find(o => o.id == id);

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cinema.cinema.entity.CinemaRoom;
 import cinema.cinema.entity.Order;
 import cinema.cinema.entity.User;
 import cinema.cinema.service.OrderService;
@@ -29,5 +30,11 @@ public class OrderApiController {
     private ResponseEntity<Iterable<Order>> listUserOrders(User user) {
         Iterable<Order> orders = orderService.findOrderByUser(user);
         return ResponseEntity.ok(orders);
+    }
+	
+	@PostMapping("/create")
+    private ResponseEntity<Order> create(@RequestBody Order order) {
+        Order saved = orderService.placeOrder(order);
+        return ResponseEntity.ok(saved);
     }
 }

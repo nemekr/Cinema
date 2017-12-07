@@ -37,4 +37,4 @@
     <presentation-details [presentation]="selectedPresentation"></presentation-details>
   </div>
 </div>
-<button type="submit" mat-raised-button color="primary" routerLink="/presentations">Order tickets</button>
+<button (click)="placeOrder()" [disabled]="(orderItems.length == 0)" mat-raised-button color="primary" routerLink="/presentations">Order tickets</button>
