@@ -116,8 +116,9 @@ orders: Order[] = [
     }, HttpHeader ).toPromise();
   }
 
-  addOrder(order) : Promise<Order> {
+  addOrder(order: Order) : Promise<Order> {
     return this.http.post<Order>('api/order/create', {
+	  'id': order.id,
       'user': order.user,
       'date': order.date,
       'status': order.status,

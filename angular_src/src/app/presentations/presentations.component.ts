@@ -4,6 +4,9 @@ import { PresentationService } from '../presentation.service';
 import { OrderService } from '../order.service';
 import { OrderItem } from '../OrderItem';
 import { AuthService } from '../auth.service';
+import { Status } from '../Status';
+import { User } from '../User';
+import { Order } from '../Order';
 
 @Component({
   selector: 'app-presentations',
@@ -11,6 +14,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./presentations.component.css']
 })
 export class PresentationsComponent implements OnInit {
+	
+  currentUser: User;
+  createdOrder: Order;
 
   selectedPresentation: Presentation;
   orderItems: OrderItem[] = [];
@@ -26,6 +32,7 @@ export class PresentationsComponent implements OnInit {
 
   async ngOnInit() {
     this.presentations = await this.presentationService.getPresentations();
+	this.currentUser = await this.authService.user;
   }
 
   onSelectPresentation(presentation) {
@@ -38,7 +45,7 @@ export class PresentationsComponent implements OnInit {
       amount++;
       var item = this.orderItems.find(o => o.presentation == presentation);
       if(!item)
-        this.orderItems.push({ id:-1, presentation: presentation, quantity: amount });
+        this.orderItems.push({ id:Date.now(), presentation: presentation, quantity: amount });
       else
         item.quantity = amount;
       document.getElementById(presentation.id + "_amount").innerHTML = amount.toString();
@@ -68,9 +75,15 @@ export class PresentationsComponent implements OnInit {
   }
 
   async placeOrder() {
-    var createdOrder = { user: this.authService.user, date: new Date(), status: 'PENDING', items: this.orderItems };
-    await this.orderService.addOrder(createdOrder);
-    this.presentations = await this.presentationService.getPresentations();
+    this.createdOrder = { 
+		id: Date.now(), 
+		user: this.currentUser, 
+		date: new Date(), 
+		status: Status.PENDING, 
+		items: this.orderItems
+	};
+    await this.orderService.addOrder(this.createdOrder);
+    //this.presentations = await this.presentationService.getPresentations();
   }
 
 }

@@ -21,7 +21,7 @@ public class OrderApiController {
 	private OrderService orderService;
 	
 	@GetMapping("/allorder")
-    private ResponseEntity<Iterable<Order>> listOrders() {
+    private ResponseEntity<Iterable<Order>> list() {
         Iterable<Order> orders = orderService.listOrders();
         return ResponseEntity.ok(orders);
     } 
