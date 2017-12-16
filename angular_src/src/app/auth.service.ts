@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { User } from "./User";
+import { User } from "./models/User";
 import { tap } from "rxjs/operators";
 
 const httpOptions = {

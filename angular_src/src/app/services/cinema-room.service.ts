@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CinemaRoom } from './CinemaRoom';
+import { CinemaRoom } from '../models/CinemaRoom';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const HttpHeader = {

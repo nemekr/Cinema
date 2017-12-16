@@ -1,14 +1,14 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { Order } from '../Order';
-import { OrderService } from '../order.service';
-import { Status } from '../Status';
+import { Order } from '../../models/Order';
+import { OrderService } from '../../services/order.service';
+import { Status } from '../../models/Status';
 
 @Component({
   selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  templateUrl: './ad-orders.component.html',
+  styleUrls: ['./ad-orders.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class AdOrdersComponent implements OnInit {
   selectedOrder: Order;
   selectedStatus: Status;
   

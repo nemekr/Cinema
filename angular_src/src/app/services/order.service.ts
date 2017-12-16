@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Order } from './Order';
-import { Status } from './Status';
-import { User } from './User';
+import { Order } from '../models/Order';
+import { Status } from '../models/Status';
+import { User } from '../models/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const HttpHeader = {

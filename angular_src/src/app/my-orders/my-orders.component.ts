@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from '../Order';
-import { OrderService } from '../order.service';
-import { Status } from '../Status';
+import { Order } from '../models/Order';
+import { OrderService } from '../services/order.service';
+import { Status } from '../models/Status';
 import { AuthService } from '../auth.service';
 
 @Component({

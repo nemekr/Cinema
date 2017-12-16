@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CinemaRoom } from '../CinemaRoom';
-import { CinemaRoomService } from '../cinema-room.service';
+import { CinemaRoom } from '../../models/CinemaRoom';
+import { CinemaRoomService } from '../../services/cinema-room.service';
 
 @Component({
   selector: 'app-rooms',
-  templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.css']
+  templateUrl: './ad-rooms.component.html',
+  styleUrls: ['./ad-rooms.component.css']
 })
-export class RoomsComponent implements OnInit {
+export class AdRoomsComponent implements OnInit {
   selectedRoom: CinemaRoom;
   addmode: boolean;
   modifymode: boolean;

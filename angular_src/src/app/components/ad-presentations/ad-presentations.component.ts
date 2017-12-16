@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Presentation } from '../Presentation';
-import { PresentationService } from '../presentation.service';
+import { Presentation } from '../../models/Presentation';
+import { PresentationService } from '../../services/presentation.service';
 
 @Component({
   selector: 'app-ad-presentations',

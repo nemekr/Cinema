@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Presentation } from '../Presentation';
-import { PresentationService } from '../presentation.service';
-import { OrderService } from '../order.service';
-import { OrderItem } from '../OrderItem';
+import { Presentation } from '../models/Presentation';
+import { PresentationService } from '../services/presentation.service';
+import { OrderService } from '../services/order.service';
+import { OrderItem } from '../models/OrderItem';
 import { AuthService } from '../auth.service';
-import { Status } from '../Status';
-import { User } from '../User';
-import { Order } from '../Order';
+import { Status } from '../models/Status';
+import { User } from '../models/User';
+import { Order } from '../models/Order';
 
 @Component({
   selector: 'app-presentations',

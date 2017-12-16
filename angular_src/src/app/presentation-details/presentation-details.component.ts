@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Presentation } from '../Presentation';
+import { Presentation } from '../models/Presentation';
 
 @Component({
   selector: 'presentation-details',

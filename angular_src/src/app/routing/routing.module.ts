@@ -8,13 +8,13 @@ import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 import { PresentationsComponent } from '../presentations/presentations.component';
 import { PresentationDetailsComponent } from '../presentation-details/presentation-details.component';
-import { FilmsComponent } from '../films/films.component';
+import { AdMoviesComponent } from '../components/ad-movies/ad-movies.component';
 import { MyOrdersComponent } from '../my-orders/my-orders.component';
 import { MyProfileComponent } from '../my-profile/my-profile.component';
-import { OrdersComponent } from '../orders/orders.component';
-import { RoomsComponent } from '../rooms/rooms.component';
-import { UsersComponent } from '../users/users.component';
-import { AdPresentationsComponent } from '../ad-presentations/ad-presentations.component';
+import { AdOrdersComponent } from '../components/ad-orders/ad-orders.component';
+import { AdRoomsComponent } from '../components/ad-rooms/ad-rooms.component';
+import { AdUsersComponent } from '../components/ad-users/ad-users.component';
+import { AdPresentationsComponent } from '../components/ad-presentations/ad-presentations.component';
 import { AuthGuard } from '../auth.guard';
 
 const routes: Routes = [
@@ -51,8 +51,8 @@ const routes: Routes = [
   },
 
   {
-    path: 'films',
-    component: FilmsComponent,
+    path: 'movies',
+    component: AdMoviesComponent,
     canActivate: [AuthGuard],
     data: {roles: ['ADMIN']}
   },
@@ -73,21 +73,21 @@ const routes: Routes = [
 
   {
     path: 'orders',
-    component: OrdersComponent,
+    component: AdOrdersComponent,
     canActivate: [AuthGuard],
     data: {roles: ['ADMIN']}
   },
 
   {
     path: 'rooms',
-    component: RoomsComponent,
+    component: AdRoomsComponent,
     canActivate: [AuthGuard],
     data: {roles: ['ADMIN']}
   },
 
   {
     path: 'users',
-    component: UsersComponent,
+    component: AdUsersComponent,
     canActivate: [AuthGuard],
     data: {roles: ['ADMIN']}
   }

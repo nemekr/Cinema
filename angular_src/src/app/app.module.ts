@@ -27,21 +27,21 @@ import { PresentationsComponent } from './presentations/presentations.component'
 import { PresentationDetailsComponent } from './presentation-details/presentation-details.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { OrdersComponent } from './orders/orders.component';
-import { UsersComponent } from './users/users.component';
-import { FilmsComponent } from './films/films.component';
-import { RoomsComponent } from './rooms/rooms.component';
-import { PresentationService } from './presentation.service';
-import { MovieService } from './movie.service';
-import { MovieFormComponent } from './movie-form/movie-form.component';
-import { CinemaRoomService } from './cinema-room.service';
-import { RoomFormComponent } from './room-form/room-form.component';
-import { OrderService } from './order.service';
+import { AdOrdersComponent } from './components/ad-orders/ad-orders.component';
+import { AdUsersComponent } from './components/ad-users/ad-users.component';
+import { AdMoviesComponent } from './components/ad-movies/ad-movies.component';
+import { AdRoomsComponent } from './components/ad-rooms/ad-rooms.component';
+import { PresentationService } from './services/presentation.service';
+import { MovieService } from './services/movie.service';
+import { AdMovieFormComponent } from './components/ad-movie-form/ad-movie-form.component';
+import { CinemaRoomService } from './services/cinema-room.service';
+import { AdRoomFormComponent } from './components/ad-room-form/ad-room-form.component';
+import { OrderService } from './services/order.service';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { AdPresentationsComponent } from './ad-presentations/ad-presentations.component';
-import { AdPresentationFormComponent } from './ad-presentation-form/ad-presentation-form.component';
+import { AdPresentationsComponent } from './components/ad-presentations/ad-presentations.component';
+import { AdPresentationFormComponent } from './components/ad-presentation-form/ad-presentation-form.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProfileFormComponent } from './profile-form/profile-form.component';
@@ -58,12 +58,12 @@ import { AuthGuard } from './auth.guard';
     PresentationDetailsComponent,
     MyProfileComponent,
     MyOrdersComponent,
-    OrdersComponent,
-    UsersComponent,
-    FilmsComponent,
-    RoomsComponent,
-    MovieFormComponent,
-    RoomFormComponent,
+    AdOrdersComponent,
+    AdUsersComponent,
+    AdMoviesComponent,
+    AdRoomsComponent,
+    AdMovieFormComponent,
+    AdRoomFormComponent,
     AdPresentationsComponent,
     AdPresentationFormComponent,
     RegistrationFormComponent,

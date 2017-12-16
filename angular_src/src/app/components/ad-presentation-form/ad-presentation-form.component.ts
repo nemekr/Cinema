@@ -1,9 +1,9 @@
 import { Component, OnInit, OnChanges, Input, EventEmitter, Output } from '@angular/core';
-import { Presentation } from '../Presentation';
-import { CinemaRoom } from '../CinemaRoom';
-import { Movie } from '../Movie';
-import { CinemaRoomService } from '../cinema-room.service';
-import { MovieService } from '../movie.service';
+import { Presentation } from '../../models/Presentation';
+import { CinemaRoom } from '../../models/CinemaRoom';
+import { Movie } from '../../models/Movie';
+import { CinemaRoomService } from '../../services/cinema-room.service';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'ad-presentation-form',

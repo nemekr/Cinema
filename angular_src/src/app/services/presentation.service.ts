@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Presentation } from './Presentation';
+import { Presentation } from '../models/Presentation';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const HttpHeader = {

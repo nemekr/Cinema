@@ -1,15 +1,15 @@
 import { Component, OnInit, OnChanges, Input, EventEmitter, Output } from '@angular/core';
-import { CinemaRoom } from '../CinemaRoom';
+import { Movie } from '../../models/Movie';
 
 @Component({
-  selector: 'room-form',
-  templateUrl: './room-form.component.html',
-  styleUrls: ['./room-form.component.css']
+  selector: 'movie-form',
+  templateUrl: './ad-movie-form.component.html',
+  styleUrls: ['./ad-movie-form.component.css']
 })
-export class RoomFormComponent implements OnInit {
-  @Input() room: CinemaRoom;
-  model: CinemaRoom;
-  @Output() onSubmit = new EventEmitter<CinemaRoom>();
+export class AdMovieFormComponent implements OnInit {
+  @Input() movie: Movie;
+  model: Movie;
+  @Output() onSubmit = new EventEmitter<Movie>();
   @Output() onCancel = new EventEmitter<string>();
 
   constructor() { }
@@ -18,7 +18,7 @@ export class RoomFormComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.model = Object.assign({}, this.room);
+    this.model = Object.assign({}, this.movie);
   }
 
   submit(form) {

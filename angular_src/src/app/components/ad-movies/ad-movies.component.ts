@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from '../Movie';
-import { MovieService } from '../movie.service';
+import { Movie } from '../../models/Movie';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
-  selector: 'app-films',
-  templateUrl: './films.component.html',
-  styleUrls: ['./films.component.css']
+  selector: 'app-movies',
+  templateUrl: './ad-movies.component.html',
+  styleUrls: ['./ad-movies.component.css']
 })
-export class FilmsComponent implements OnInit {
+export class AdMoviesComponent implements OnInit {
 
   selectedMovie: Movie;
   addmode: boolean;
