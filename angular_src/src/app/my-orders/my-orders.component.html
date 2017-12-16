@@ -8,19 +8,20 @@
         <thead>  
           <tr>  
             <th scope="col">#</th>  
-            <th scope="col">User</th>  
             <th scope="col">Date</th>  
             <th scope="col">Status</th>
           </tr>  
         </thead>  
         <tbody>  
           <tr *ngFor="let order of orders" (click)="onSelectOrder(order)" [class.table-info]="order === selectedOrder" >  
-            <th scope="row">{{ order.id }}</th>  
-            <td>{{ order.user }}</td>  
-            <td>{{ order.date }}</td>  
+            <th scope="row">{{ order.id }}</th>
+            <td>{{ getFormattedTime(order) }}</td>  
             <td>{{ order.status }}</td>
           </tr>  
         </tbody>  
       </table>
+    </div>
+    <div *ngIf="selectedOrder">
+      <order-details [order]="selectedOrder"></order-details>
     </div>
   </div>

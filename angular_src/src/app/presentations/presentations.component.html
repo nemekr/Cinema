@@ -12,7 +12,7 @@
           <th scope="col">Room</th>  
           <th scope="col">Time</th>
           <th scope="col">Available tickets</th>
-          <th scope="col">Amount</th>
+          <th scope="col" *ngIf="currentUser != undefined && currentUser.role ==='USER'">Amount</th>
         </tr>  
       </thead>  
       <tbody>  
@@ -22,7 +22,7 @@
           <td>{{ presentation.room.number }}</td>  
           <td>{{ getFormattedTime(presentation) }}</td> 
           <td>{{ presentation.availableTickets }}</td>
-          <td>
+          <td *ngIf="currentUser != undefined && currentUser.role==='USER'">
               <mat-chip-list>
                   <mat-chip (click)="removeTicket(presentation)" class="disable-text-selection">-</mat-chip>
                   <mat-chip (click)="addTicket(presentation)" class="disable-text-selection">+</mat-chip>
@@ -37,4 +37,6 @@
     <presentation-details [presentation]="selectedPresentation"></presentation-details>
   </div>
 </div>
-<button (click)="placeOrder()" [disabled]="(orderItems.length == 0)" mat-raised-button color="primary" routerLink="/presentations">Order tickets</button>
+<div *ngIf="currentUser != undefined && currentUser.role==='USER'">
+  <button (click)="placeOrder()" [disabled]="(orderItems.length == 0)" mat-raised-button color="primary" routerLink="/presentations">Order tickets</button>
+</div>

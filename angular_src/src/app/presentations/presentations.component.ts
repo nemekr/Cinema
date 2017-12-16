@@ -32,7 +32,7 @@ export class PresentationsComponent implements OnInit {
 
   async ngOnInit() {
     this.presentations = await this.presentationService.getPresentations();
-	this.currentUser = await this.authService.user;
+	  this.currentUser = await this.authService.user;
   }
 
   onSelectPresentation(presentation) {
@@ -76,14 +76,14 @@ export class PresentationsComponent implements OnInit {
 
   async placeOrder() {
     this.createdOrder = { 
-		id: Date.now(), 
-		user: this.currentUser, 
-		date: new Date(), 
-		status: Status.PENDING, 
-		items: this.orderItems
-	};
+		  id: Date.now(), 
+		  user: this.currentUser, 
+		  date: new Date(), 
+		  status: Status.PENDING, 
+		  items: this.orderItems
+	  };
     await this.orderService.addOrder(this.createdOrder);
-    //this.presentations = await this.presentationService.getPresentations();
+    this.presentations = await this.presentationService.getPresentations();
   }
 
   getFormattedTime(presentation: Presentation) : string {

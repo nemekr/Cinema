@@ -46,6 +46,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { MenuComponent } from './menu/menu.component';
 import { ProfileFormComponent } from './profile-form/profile-form.component';
 import { AuthGuard } from './auth.guard';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { AuthGuard } from './auth.guard';
     RegistrationFormComponent,
     MenuComponent,
     ProfileFormComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,
