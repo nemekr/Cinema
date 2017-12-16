@@ -1,0 +1,6 @@
+INSERT INTO USER (ID, ADDRESS, EMAIL, NAME, PASSWORD, ROLE) VALUES (1, 'admin 111', 'admin@admin.hu', 'admin', 'admin', 'ADMIN');
+INSERT INTO USER (ID, ADDRESS, EMAIL, NAME, PASSWORD, ROLE) VALUES (2, 'user 111', 'user@user.hu', 'user', 'user', 'USER');
+
+INSERT INTO MOVIE (ID, DESCRIPTION, LENGTH, PRIZE, TITLE, YEAR) VALUES (1, 'the asd movie', 122, 2000, 'the asd movie', 1991);
+
+INSERT INTO CINEMA_ROOM (ID, CAPACITY, NUMBER, TYPE) VALUES (1, 20, 1, 'NORMAL');

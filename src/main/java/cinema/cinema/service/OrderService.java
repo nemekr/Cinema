@@ -16,6 +16,7 @@ import cinema.cinema.entity.OrderItem;
 import cinema.cinema.entity.Presentation;
 import cinema.cinema.entity.Status;
 import cinema.cinema.entity.User;
+import cinema.cinema.repository.OrderItemRepository;
 import cinema.cinema.repository.OrderRepository;
 import cinema.cinema.repository.PresentationRepository;
 import lombok.Data;
@@ -26,6 +27,9 @@ import lombok.Data;
 public class OrderService {
 	@Autowired
 	private OrderRepository orderRepo;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepo;
 	
 	@Autowired
 	private PresentationRepository presentationRepo;
@@ -63,6 +67,9 @@ public class OrderService {
 	@Transactional
 	public Order deleteOrder(Order order) {
 		validateOrderDeletion(order);
+		order.getItems().forEach(item-> {
+			orderItemRepo.delete(item.getId());
+		});
 		orderRepo.delete(order);
 		return order;
 	}
