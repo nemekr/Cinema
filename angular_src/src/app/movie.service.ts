@@ -19,13 +19,7 @@ export class MovieService {
     return this.http.get<Movie[]>('api/movie/list').toPromise();
   }
 
-  getMovie(id) {
-    //return this.movies.find(m => m.id == id);
-  }
-
   deleteMovie(movie) : Promise<Movie> {
-    //var index = this.movies.indexOf(movie);
-    //this.movies.splice(index,1);
     return this.http.post<Movie>('api/movie/delete', {
       'id': movie.id,
       'title': movie.title,
@@ -37,7 +31,6 @@ export class MovieService {
   }
 
   addMovie(movie) : Promise<Movie> {
-    //this.movies.push(movie);
     return this.http.post<Movie>('api/movie/create', {
       'title': movie.title,
       'year': movie.year,
@@ -48,9 +41,6 @@ export class MovieService {
   }
 
   modifyMovie(movie) : Promise<Movie> {
-    //var foundMovie = this.movies.find(m => m.id == movie.id);
-    //var index = this.movies.indexOf(foundMovie);
-    //Object.assign(this.movies[index],movie);
     return this.http.post<Movie>('api/movie/update', {
       'id': movie.id,
       'title': movie.title,

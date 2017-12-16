@@ -19,13 +19,7 @@ export class CinemaRoomService {
     return this.http.get<CinemaRoom[]>('api/room/list').toPromise();
   }
 
-  getRoom(id) {
-   // return this.rooms.find(r => r.id == id);
-  }
-
   deleteRoom(room) : Promise<CinemaRoom> {
-    //var index = this.rooms.indexOf(room);
-    //this.rooms.splice(index,1);
     return this.http.post<CinemaRoom>('api/room/delete', {
       'id': room.id,
       'capacity': room.capacity,
@@ -35,7 +29,6 @@ export class CinemaRoomService {
   }
 
   addRoom(room) : Promise<CinemaRoom> {
-    //this.rooms.push(room);
     return this.http.post<CinemaRoom>('api/room/create', {
       'capacity': room.capacity,
       'number': room.number,
@@ -44,9 +37,6 @@ export class CinemaRoomService {
   }
 
   modifyRoom(room) : Promise<CinemaRoom> {
-    //var foundRoom = this.rooms.find(r => r.id == room.id);
-    //var index = this.rooms.indexOf(foundRoom);
-    //Object.assign(this.rooms[index],room);
     return this.http.post<CinemaRoom>('api/room/update', {
       'id': room.id,
       'capacity': room.capacity,

@@ -19,10 +19,6 @@ export class PresentationService {
     return this.http.get<Presentation[]>('api/presentation/list').toPromise();
   }
 
-  getPresentation(id) {
-    //return this.presentations.find(p => p.id == id);
-  }
-
   deletePresentation(presentation) : Promise<Presentation> {
     return this.http.post<Presentation>('api/presentation/delete', {
       'id': presentation.id,
