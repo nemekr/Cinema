@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Presentation extends BaseEntity implements SearchableEntity {
+public class Presentation extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name="movieId")
 	private Movie movie;

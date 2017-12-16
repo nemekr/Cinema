@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Movie extends BaseEntity implements SearchableEntity {
+public class Movie extends BaseEntity {
 	@Column( nullable = false)
 	private String title;
 	@Column( nullable = false)
