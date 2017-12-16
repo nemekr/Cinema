@@ -125,6 +125,26 @@ orders: Order[] = [
       'items': order.items
     }, HttpHeader).toPromise();
   }
+
+  modifyOrder(order: Order) : Promise<Order> {
+    return this.http.post<Order>('api/order/update', {
+	  'id': order.id,
+      'user': order.user,
+      'date': order.date,
+      'status': order.status,
+      'items': order.items
+    }, HttpHeader).toPromise();
+  }
+
+  deleteOrder(order: Order) : Promise<Order> {
+    return this.http.post<Order>('api/order/delete', {
+      'id': order.id,
+      'user': order.user,
+      'date': order.date,
+      'status': order.status,
+      'items': order.items
+    }, HttpHeader).toPromise();
+  }
  /*
   getOrder(id) {
     return this.orders.find(o => o.id == id);

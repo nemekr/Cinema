@@ -37,4 +37,16 @@ public class OrderApiController {
         Order saved = orderService.placeOrder(order);
         return ResponseEntity.ok(saved);
     }
+	
+	@PostMapping("/update")
+    private ResponseEntity<Order> update(@RequestBody Order order) {
+        Order updated = orderService.updateOrder(order);
+        return ResponseEntity.ok(updated);
+    }
+	
+	@PostMapping("/delete")
+    private ResponseEntity<Order> delete(@RequestBody Order order) {
+        orderService.deleteOrder(order);
+        return ResponseEntity.ok(order);
+    }
 }

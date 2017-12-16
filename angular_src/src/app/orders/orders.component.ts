@@ -36,19 +36,21 @@ export class OrdersComponent implements OnInit {
     }
   }
 
-  /*
-  submit(form) {
-    this.modifyOrder(this.model);
-  }
-
-  deleteOrder(order) {
-    this.orderService.deleteOrder(order);
-    this.orders = this.orderService.getOrders();
+  async modifyList(order: Order) {
     this.selectedOrder = null;
+    await this.orderService.modifyOrder(order);
+    this.orders = await this.orderService.getOrders();
   }
 
-  modifyOrder(order) {
-    this.orderService.modifyOrder(order);
-    this.orders = this.orderService.getOrders();
-  }*/
+  
+  submit(form) {
+    this.modifyList(this.model);
+  }
+
+  
+  async deleteOrder(order) {
+    this.selectedOrder = null;
+    await this.orderService.deleteOrder(order);
+    this.orders = await this.orderService.getOrders();
+  }
 }

@@ -55,9 +55,8 @@ public class OrderService {
 	}
 	
 	@Transactional
-	public Order modifyOrderState(Order order, Status newStatus) {
+	public Order updateOrder(Order order) {
 		checkOrderExistence(order);
-		order.setStatus(newStatus);
 		return orderRepo.save(order);
 	}
 	
