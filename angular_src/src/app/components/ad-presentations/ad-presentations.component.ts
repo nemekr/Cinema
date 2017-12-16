@@ -61,5 +61,9 @@ export class AdPresentationsComponent implements OnInit {
     this.toggleModifymode();
   }
 
+  getFormattedTime(presentation: Presentation) : string {
+    return new Date(presentation.time).toString();
+  }
+
 
 }

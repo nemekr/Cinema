@@ -19,7 +19,7 @@
           <th scope="row">{{ presentation.id }}</th>  
           <td>{{ presentation.movie.title }}</td>  
           <td>{{ presentation.room.number }}</td>  
-          <td>{{ presentation.time }}</td>  
+          <td>{{ getFormattedTime(presentation) }}</td>  
           <td>{{ presentation.availableTickets }}</td>    
         </tr>  
       </tbody>  

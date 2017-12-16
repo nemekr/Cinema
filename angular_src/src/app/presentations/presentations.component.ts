@@ -86,4 +86,8 @@ export class PresentationsComponent implements OnInit {
     //this.presentations = await this.presentationService.getPresentations();
   }
 
+  getFormattedTime(presentation: Presentation) : string {
+    return new Date(presentation.time).toString();
+  }
+
 }

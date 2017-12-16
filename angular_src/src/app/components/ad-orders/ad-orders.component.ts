@@ -53,4 +53,8 @@ export class AdOrdersComponent implements OnInit {
     await this.orderService.deleteOrder(order);
     this.orders = await this.orderService.getOrders();
   }
+
+  getFormattedTime(order: Order) : string {
+    return new Date(order.date).toString();
+  }
 }
