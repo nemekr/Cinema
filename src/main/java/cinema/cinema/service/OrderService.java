@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -90,6 +91,10 @@ public class OrderService {
 		List<Order> target = new ArrayList<>();
 		
 		iterator.forEach(target::add);
+		target.forEach(order-> {
+			Hibernate.initialize(order.getUser());
+			Hibernate.initialize(order.getItems());
+		});
 		return target;
 	}
 	

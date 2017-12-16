@@ -16,7 +16,7 @@
       <tbody>  
         <tr *ngFor="let order of orders" (click)="onSelectOrder(order)" [class.table-info]="order === selectedOrder" >  
           <th scope="row">{{ order.id }}</th>  
-          <td>{{ order.user }}</td>  
+          <td>{{ order.user.email }}</td>  
           <td>{{ order.date }}</td>  
           <td>
               <form *ngIf="selectedOrder === order" #orderForm="ngForm">
