@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Order } from '../models/Order';
-import { Presentation } from '../models/Presentation';
+import { Order } from '../../models/Order';
+import { Presentation } from '../../models/Presentation';
 
 @Component({
   selector: 'order-details',

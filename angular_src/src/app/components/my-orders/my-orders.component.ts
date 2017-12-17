@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from '../models/Order';
-import { OrderService } from '../services/order.service';
-import { Status } from '../models/Status';
-import { AuthService } from '../auth.service';
-import { OrderItem } from '../models/OrderItem';
-import { User } from '../models/User';
+import { Order } from '../../models/Order';
+import { OrderService } from '../../services/order.service';
+import { Status } from '../../models/Status';
+import { AuthService } from '../../services/auth.service';
+import { OrderItem } from '../../models/OrderItem';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-my-orders',

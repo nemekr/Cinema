@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { User } from '../models/User';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'registration-form',

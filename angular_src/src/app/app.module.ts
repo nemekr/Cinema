@@ -17,16 +17,16 @@ import {
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './main-page/main-page.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 import { RoutingModule } from './routing/routing.module'; 
 // News
 import { FormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { PresentationsComponent } from './presentations/presentations.component';
-import { PresentationDetailsComponent } from './presentation-details/presentation-details.component';
-import { MyProfileComponent } from './my-profile/my-profile.component';
-import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { PresentationsComponent } from './components/presentations/presentations.component';
+import { PresentationDetailsComponent } from './components/presentation-details/presentation-details.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { AdOrdersComponent } from './components/ad-orders/ad-orders.component';
 import { AdUsersComponent } from './components/ad-users/ad-users.component';
 import { AdMoviesComponent } from './components/ad-movies/ad-movies.component';
@@ -37,16 +37,16 @@ import { AdMovieFormComponent } from './components/ad-movie-form/ad-movie-form.c
 import { CinemaRoomService } from './services/cinema-room.service';
 import { AdRoomFormComponent } from './components/ad-room-form/ad-room-form.component';
 import { OrderService } from './services/order.service';
-import { UserService } from './user.service';
-import { AuthService } from './auth.service';
+import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AdPresentationsComponent } from './components/ad-presentations/ad-presentations.component';
 import { AdPresentationFormComponent } from './components/ad-presentation-form/ad-presentation-form.component';
-import { RegistrationFormComponent } from './registration-form/registration-form.component';
-import { MenuComponent } from './menu/menu.component';
-import { ProfileFormComponent } from './profile-form/profile-form.component';
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 import { AuthGuard } from './auth.guard';
-import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 
 @NgModule({

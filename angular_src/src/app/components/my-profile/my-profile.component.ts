@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/User'; 
-import { UserService } from '../user.service';
-import { AuthService } from '../auth.service';
+import { User } from '../../models/User'; 
+import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -10,7 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class MyProfileComponent implements OnInit {
   
-  user: User;
+  currentUser: User;
   modifymode: boolean;
   
   constructor( private userService: UserService, private authService: AuthService ) { 
@@ -18,7 +18,7 @@ export class MyProfileComponent implements OnInit {
   }
   
   async ngOnInit() {
-    this.user = await this.authService.user;
+    this.currentUser = await this.authService.user;
   }
 
   toggleModifymode() {

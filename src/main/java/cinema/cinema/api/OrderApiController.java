@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cinema.cinema.entity.Order;
-import cinema.cinema.entity.User;
 import cinema.cinema.service.OrderService;
 
 @RestController
@@ -22,12 +21,6 @@ public class OrderApiController {
 	@GetMapping("/allorder")
     private ResponseEntity<Iterable<Order>> list() {
         Iterable<Order> orders = orderService.listOrders();
-        return ResponseEntity.ok(orders);
-    } 
-	
-	@GetMapping("/userorder")
-    private ResponseEntity<Iterable<Order>> listUserOrders(User user) {
-        Iterable<Order> orders = orderService.findOrderByUser(user);
         return ResponseEntity.ok(orders);
     }
 	

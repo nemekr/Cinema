@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from "../models/User";
-import { AuthService } from "../auth.service";
+import { User } from "../../models/User";
+import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     catch(e) {
       this.message = 'Login failed';
       console.log(e);
+      alert("Wrong email or password!");
     }
   }
 

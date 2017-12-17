@@ -21,16 +21,6 @@ export class OrderService {
     return this.http.get<Order[]>('api/order/allorder').toPromise();
   }
 
-  getUserOrders(user : User) : Promise<Order[]> {
-    return this.http.post<Order[]>('api/user/userorder', {
-      'email': user.email,
-      'password': user.password,
-      'name': user.name,
-      'address': user.address,
-      'role': user.role
-    }, HttpHeader ).toPromise();
-  }
-
   addOrder(order: Order) : Promise<Order> {
     return this.http.post<Order>('api/order/create', {
 	  'id': order.id,
