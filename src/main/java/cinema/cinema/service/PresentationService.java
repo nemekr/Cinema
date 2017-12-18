@@ -49,6 +49,10 @@ public class PresentationService {
 		if(foundPresentation.isPresent()) {
 			throw new IllegalArgumentException("Cannot create presentation: the room is already reserved at that time.");
 		}
+		
+		if(presentation.getAvailableTickets() > presentation.getRoom().getCapacity()) {
+			throw new IllegalArgumentException("Cannot create presentation: available tickets is greater than the room's capacity.");
+		}
 	}
 	
 	@Transactional

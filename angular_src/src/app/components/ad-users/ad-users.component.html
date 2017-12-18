@@ -45,4 +45,4 @@
       </table> 
     </div>
   </div>
-  <button mat-raised-button color="primary" (click)="submit(userForm)" [disabled]="(!selectedUser)">Modify role</button>
+  <button mat-raised-button color="primary" (click)="submit(userForm)" [disabled]="(!selectedUser) || (currentUser.email == selectedUser.email)">Modify role</button>
