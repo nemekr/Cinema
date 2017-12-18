@@ -20,9 +20,29 @@
             <td>{{ user.email }}</td>  
             <td>{{ user.name }}</td>  
             <td>{{ user.address }}</td>
-            <td>{{ user.role }}</td>   
+            <td>
+                <form *ngIf="(selectedUser === user) && (currentUser.email != user.email)" #userForm="ngForm">
+                    <div class="form-group">
+                        <mat-select
+                            name="role"
+                            [(ngModel)]="model.role"
+                            aria-describedby="roleHelp"
+                            placeholder="Select role"
+                            required
+                            #role="ngModel"
+                          >
+                          <mat-option value="USER">USER</mat-option>
+                          <mat-option value="ADMIN">ADMIN</mat-option>
+                        </mat-select>
+                    </div>
+                </form>
+                <div *ngIf="(selectedUser != user) || (currentUser.email == user.email)">
+                  {{ user.role }}
+                </div>  
+            </td>   
           </tr>  
         </tbody>  
       </table> 
     </div>
   </div>
+  <button mat-raised-button color="primary" (click)="submit(userForm)" [disabled]="(!selectedUser)">Modify role</button>

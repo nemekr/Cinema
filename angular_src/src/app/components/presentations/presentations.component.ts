@@ -84,6 +84,7 @@ export class PresentationsComponent implements OnInit {
 	  };
     await this.orderService.addOrder(this.createdOrder);
     this.presentations = await this.presentationService.getPresentations();
+    this.orderItems = [];
   }
 
   getFormattedTime(presentation: Presentation) : string {
